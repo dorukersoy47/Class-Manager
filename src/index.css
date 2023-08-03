@@ -1,33 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
-/* base styles */
 * {
     margin: 0;
     font-family: "Quicksand";
     color: #333;
+    background-color: #fcf7f7;
 }
+
 .navbar {
     padding: 20px;
     display: flex;
     align-items: center;
-    max-width: 600px;
+    max-width: 750px;
     margin: 0 auto;
-    border-bottom: 1px solid #f2f2f2;
+    border-bottom: 1px solid #5e5e5e;
 }
+
 .navbar h1 {
-    color: #f1356d;
+    color: #5916f7;
 }
+
 .navbar .links {
     margin-left: auto;
 }
+
 .navbar a {
     margin-left: 16px;
     text-decoration: none;
     padding: 6px;
 }
+
 .navbar a:hover {
     color: #f1356d;
 }
+
 .content {
     max-width: 600px;
     margin: 40px auto;
@@ -35,9 +41,132 @@
 }
 
 .studentDb {
-    width: 100vh;
-    height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    margin: 20px;
 }
+
+.studentDbTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.studentDbTable th,
+.studentDbTable td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.studentDbTable th {
+    background-color: #dddddd;
+    font-weight: bold;
+}
+
+.studentDbTable tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.studentDbTable tbody tr:hover {
+    background-color: #aed6ee;
+}
+
+.searchBar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.searchField,
+.searchInput {
+  flex: 1 0 45%;
+}
+
+.searchField select,
+.searchInput input {
+  width: 100%;
+}
+
+.addStudentP {
+    font-family: "Quicksand", sans-serif;
+    font-size: 20px;
+    background-color: #4caf50; 
+    color: #fff; 
+    padding: 7px 15px; 
+    border-radius: 5px; 
+    display: inline-block; 
+    text-decoration: none; 
+    margin-bottom: 20px;
+    margin-top: -10px;
+    cursor: pointer; 
+  }
+  .studentForm {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.studentForm .formLabel {
+    margin-bottom:10px;
+}
+
+.studentForm .formInput {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.studentForm .submitButton {
+    padding: 5px 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-family: "Quicksand";
+    margin-left: 30px;
+}
+
+.studentForm .submitButton:hover {
+    background-color: #45a049;
+}
+
+.finance {
+    margin: auto;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.finance h2 {
+    margin:15px;
+    padding: 2px;
+}
+
+.finance h3 {
+    margin: 15px;
+    padding: 2px;
+}
+
+.transaction {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+.transaction h3, p{
+    margin: 2px;
+    padding: 2px;
+}
+
