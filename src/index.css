@@ -89,7 +89,13 @@
   width: 100%;
 }
 
-.addStudentP {
+.addElement {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.add {
     font-family: "Quicksand", sans-serif;
     font-size: 20px;
     background-color: #4caf50; 
@@ -101,7 +107,9 @@
     margin-bottom: 20px;
     margin-top: -10px;
     cursor: pointer; 
+    text-align: center;
   }
+  
   .studentForm {
     display: flex;
     flex-direction: column;

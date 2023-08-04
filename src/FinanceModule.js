@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom'; // Import useParams hook
+import { useParams } from 'react-router-dom';
+import EditImage from './images/Edit.svg';
 
 const FinanceModule = () => {
   const [finance, setFinance] = useState([]);
   const [total, setTotal] = useState(0);
 
-  const { id } = useParams(); // Extract id from the URL
+  const { id } = useParams();
 
   useEffect(() => {
     axios.get(`http://localhost:3001/getStudent/${id}`)
@@ -19,7 +20,10 @@ const FinanceModule = () => {
   }, [id]);
 
   return (
-      <div className="finance">
+    <div className="finance">
+      <div className="addElement">
+                <a className="add" href={`/addFinance/${id}`}>Add Finance</a>
+            </div>
         <h2>Total Debt</h2>
         <h3 style={{color: total < 0 ? "red": total === 0 ? 'black' : "green", fontWeight:"bold"}}>
                 {total}
@@ -32,7 +36,8 @@ const FinanceModule = () => {
             <p style={{color: Number(item.value) < 0 ? "red" : Number(item.value) === 0 ? "black" : "green", fontWeight: "bold"}}>
             {item.value}
             </p>
-
+          <p>{item.date ? new Date(item.date).toLocaleDateString('en-GB') : ""}</p>
+          <a href={`/editFinance/${id}`}><img src={EditImage} alt="Edit SVG" /></a>
         </div>
       ))}
     </div>

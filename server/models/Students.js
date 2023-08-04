@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const FinanceSchema = new mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String, require: false },
-    value: {type: Number, required: true}
+    value: { type: Number, required: true },
+    date: {type: Date, required: true}
 })
 
 const StudentSchema = new mongoose.Schema({

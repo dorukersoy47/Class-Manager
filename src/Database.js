@@ -4,6 +4,7 @@ import axios from 'axios'
 import FinanceImage from './images/Finance.svg';
 import LevelImage from './images/Level.svg';
 import DeleteImage from './images/Delete.svg';
+import EditImage from './images/Edit.svg';
 
 const Database = () => {
 
@@ -31,8 +32,8 @@ const Database = () => {
 
     return (
         <div className="studentDb">
-            <div className="addStudent">
-                <a className="addStudentP" href="./add">Add Student</a>
+            <div className="addElement">
+                <a className="add" href="./add">Add Student</a>
             </div>
             <div className="searchBar">
                 <div className="searchField">
@@ -65,6 +66,7 @@ const Database = () => {
                         <th>Parent #2</th>
                         <th>Finance</th>
                         <th>Level</th>
+                        <th>Edit</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
@@ -79,9 +81,10 @@ const Database = () => {
                             <td>{student.phoneNumber || ""}</td>
                             <td>{student.parentOneName || ""} {student.parentOneSurname || ""}</td>
                             <td>{student.parentTwoName || ""} {student.parentTwoSurname || ""}</td>
-                            <td><a href={`/finance/${student._id}`}> <img src={FinanceImage} alt="Finance SVG"/></a></td>
-                            <td><a href={`/level/${student._id}`}> <img src={LevelImage} alt="Level SVG" /></a></td>
-                            <td><img src={DeleteImage} alt="Delete SVG" onClick={() => handleDelete(student._id)}/></td>
+                            <td className="icon"><a href={`/finance/${student._id}`}> <img src={FinanceImage} alt="Finance SVG"/></a></td>
+                            <td className="icon"><a href={`/level/${student._id}`}> <img src={LevelImage} alt="Level SVG" /></a></td>
+                            <td className="icon"><a href={`/edit/${student._id}`}><img src={EditImage} alt="Edit SVG"/></a></td>
+                            <td className="icon"><img src={DeleteImage} alt="Delete SVG" onClick={() => handleDelete(student._id)} /></td>
                         </tr>
                     })                    
                 }

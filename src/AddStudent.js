@@ -16,11 +16,6 @@ const AddStudent = () => {
         address: '',
         citizenshipNumber: '',
         phoneNumber: '',
-        finance: [{
-            title: '',
-            description: '',
-            value: ''
-        }],
         level: ''
     });
 
@@ -28,17 +23,6 @@ const AddStudent = () => {
         setStudent({
             ...student,
             [e.target.name]: e.target.value
-        });
-    }
-
-    const handleFinanceChange = (e) => {
-        const updatedFinance = {
-            ...student.finance[0],
-            [e.target.name]: e.target.value
-        };
-        setStudent({
-            ...student,
-            finance: [updatedFinance]
         });
     }
 
@@ -94,19 +78,6 @@ const AddStudent = () => {
             <label className="formLabel">
                 Phone Number:*
                 <input className="formInput" type="number" name="phoneNumber" placeholder="5..." onChange={handleChange} required />
-            </label>
-            <h3>Finance Information</h3>
-            <label className="formLabel">
-                Title:*
-                <input className="formInput" type="text" name="title" onChange={handleFinanceChange} required />
-            </label>
-            <label className="formLabel">
-                Description:
-                <input className="formInput" type="text" name="description" onChange={handleFinanceChange} />
-            </label>
-            <label className="formLabel">
-                Value:*
-                <input className="formInput" type="number" name="value" onChange={handleFinanceChange} required/>
             </label>
             <h3>Education</h3>
             <label className="formLabel">
