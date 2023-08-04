@@ -73,20 +73,20 @@
 }
 
 .searchBar {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  gap: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 10px;
 }
 
 .searchField,
 .searchInput {
-  flex: 1 0 45%;
+    flex: 1 0 45%;
 }
 
 .searchField select,
 .searchInput input {
-  width: 100%;
+    width: 100%;
 }
 
 .addElement {
@@ -108,9 +108,9 @@
     margin-top: -10px;
     cursor: pointer; 
     text-align: center;
-  }
-  
-  .studentForm {
+}
+
+.studentForm {
     display: flex;
     flex-direction: column;
     width: 50%;
@@ -120,7 +120,7 @@
 }
 
 .studentForm .formLabel {
-    margin-bottom:10px;
+    margin-bottom: 10px;
 }
 
 .studentForm .formInput {
@@ -153,7 +153,7 @@
 }
 
 .finance h2 {
-    margin:15px;
+    margin: 15px;
     padding: 2px;
 }
 
@@ -173,8 +173,7 @@
     border-radius: 5px;
 }
 
-.transaction h3, p{
+.transaction h3, p {
     margin: 2px;
     padding: 2px;
 }
-

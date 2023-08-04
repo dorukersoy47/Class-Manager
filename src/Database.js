@@ -1,6 +1,6 @@
 import './index.css';
 import { useEffect, useState } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 import FinanceImage from './images/Finance.svg';
 import LevelImage from './images/Level.svg';
 import DeleteImage from './images/Delete.svg';
@@ -19,7 +19,7 @@ const Database = () => {
     }, []);
 
     const handleDelete = (id) => {
-        if(window.confirm("Are you sure you want to delete this student?")){
+        if (window.confirm("Are you sure you want to delete this student?")) {
             axios.delete(`http://localhost:3001/deleteStudent/${id}`)
                 .then(res => {
                     if (res.status === 200) {
@@ -52,7 +52,7 @@ const Database = () => {
                     </select>
                 </div>
                 <div className="searchInput">
-                    <input type="text" value={searchString} onChange={(e) => setSearchString(e.target.value)} placeholder="Search..."/>
+                    <input type="text" value={searchString} onChange={(e) => setSearchString(e.target.value)} placeholder="Search..." />
                 </div>
             </div>
             <table className="studentDbTable">
@@ -72,31 +72,31 @@ const Database = () => {
                     </tr>
                 </thead>
                 <tbody>
-                {
-                    students.filter(student => {
-                        if (searchString === "") {
-                            return student
-                        } else if (student[searchField]?.toString().toLowerCase().includes(searchString.toLowerCase())) {
-                            return student
-                        }
-                    })
-                    .map(student => {
-                        return <tr key={student._id}>
-                            <td>{student.name || ""} {student.surname || ""}</td>
-                            <td>{student.birthDate ? new Date(student.birthDate).toLocaleDateString('en-GB') : ""}</td>
-                            <td>{student.address || ""}</td>
-                            <td>{student.citizenshipNumber || ""}</td>
-                            <td>{student.phoneNumber || ""}</td>
-                            <td>{student.parentOneName || ""} {student.parentOneSurname || ""}</td>
-                            <td>{student.parentTwoName || ""} {student.parentTwoSurname || ""}</td>
-                            <td className="icon"><a href={`/finance/${student._id}`}> <img src={FinanceImage} alt="Finance SVG"/></a></td>
-                            <td className="icon"><a href={`/level/${student._id}`}> <img src={LevelImage} alt="Level SVG" /></a></td>
-                            <td className="icon"><a href={`/edit/${student._id}`}><img src={EditImage} alt="Edit SVG"/></a></td>
-                            <td className="icon"><img src={DeleteImage} alt="Delete SVG" onClick={() => handleDelete(student._id)} /></td>
-                        </tr>
-                    })                    
-                }
-            </tbody>
+                    {
+                        students.filter(student => {
+                            if (searchString === "") {
+                                return student
+                            } else if (student[searchField]?.toString().toLowerCase().includes(searchString.toLowerCase())) {
+                                return student
+                            }
+                        })
+                            .map(student => {
+                                return <tr key={student._id}>
+                                    <td>{student.name || ""} {student.surname || ""}</td>
+                                    <td>{student.birthDate ? new Date(student.birthDate).toLocaleDateString('en-GB') : ""}</td>
+                                    <td>{student.address || ""}</td>
+                                    <td>{student.citizenshipNumber || ""}</td>
+                                    <td>{student.phoneNumber || ""}</td>
+                                    <td>{student.parentOneName || ""} {student.parentOneSurname || ""}</td>
+                                    <td>{student.parentTwoName || ""} {student.parentTwoSurname || ""}</td>
+                                    <td className="icon"><a href={`/finance/${student._id}`}> <img src={FinanceImage} alt="Finance SVG" /></a></td>
+                                    <td className="icon"><a href={`/level/${student._id}`}> <img src={LevelImage} alt="Level SVG" /></a></td>
+                                    <td className="icon"><a href={`/edit/${student._id}`}><img src={EditImage} alt="Edit SVG" /></a></td>
+                                    <td className="icon"><img src={DeleteImage} alt="Delete SVG" onClick={() => handleDelete(student._id)} /></td>
+                                </tr>
+                            })
+                    }
+                </tbody>
             </table>
         </div>
     );

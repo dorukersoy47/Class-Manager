@@ -17,18 +17,18 @@ const EditFinance = () => {
         axios.get(`http://localhost:3001/getStudent/${studentId}`)
             .then(response => {
                 if (response.data.finance) {
-                    console.log(response.data)
+                    console.log(response.data);
                     const financeItem = response.data.finance.find(item => item._id.toString() === financeId.toString());
-                    if(financeItem) {
+                    if (financeItem) {
                         const date = new Date(financeItem.date);
-                        const formattedDate = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
-                        setFinance({...financeItem, date: formattedDate});
+                        const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+                        setFinance({ ...financeItem, date: formattedDate });
                     }
-                } 
+                }
             })
             .catch(error => console.error(`There was an error retrieving the finance: ${error}`));
     }, [studentId, financeId]);
-    
+
 
     const handleChange = (e) => {
         setFinance({
