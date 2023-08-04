@@ -25,6 +25,7 @@ const Database = () => {
                     if (res.status === 200) {
                         setStudents(students.filter(student => student._id !== id));
                     }
+                    window.location.reload();
                 })
                 .catch(err => console.log(err))
         }
@@ -72,7 +73,14 @@ const Database = () => {
                 </thead>
                 <tbody>
                 {
-                    students.map(student => {
+                    students.filter(student => {
+                        if (searchString === "") {
+                            return student
+                        } else if (student[searchField]?.toString().toLowerCase().includes(searchString.toLowerCase())) {
+                            return student
+                        }
+                    })
+                    .map(student => {
                         return <tr key={student._id}>
                             <td>{student.name || ""} {student.surname || ""}</td>
                             <td>{student.birthDate ? new Date(student.birthDate).toLocaleDateString('en-GB') : ""}</td>

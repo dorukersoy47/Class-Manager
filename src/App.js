@@ -24,7 +24,7 @@ function App() {
                         <Route path="/add" element={<AddStudent />}></Route>
                         <Route path="/addFinance/:id" element={<AddFinance />}></Route>
                         <Route path="/edit/:id" element={<EditStudent />}></Route>
-                        <Route path="/editFinance/:id" element={<EditFinance />}></Route>
+                        <Route path="/editFinance/:studentId/:financeId" element={<EditFinance />}></Route>
                     </Routes>
                 </div>
             </div>

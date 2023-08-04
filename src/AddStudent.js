@@ -32,6 +32,7 @@ const AddStudent = () => {
             .then(response => {
                 alert('Student added successfully');
                 navigate('/database');
+                window.location.reload();
             })
             .catch(error => console.error(`There was an error adding the student: ${error}`));
     }
