@@ -17,7 +17,6 @@ const EditFinance = () => {
         axios.get(`http://localhost:3001/getStudent/${studentId}`)
             .then(response => {
                 if (response.data.finance) {
-                    console.log(response.data);
                     const financeItem = response.data.finance.find(item => item._id.toString() === financeId.toString());
                     if (financeItem) {
                         const date = new Date(financeItem.date);

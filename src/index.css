@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import '~react-big-calendar/lib/css/react-big-calendar.css';
 
+/*General*/
 * {
     margin: 0;
     font-family: "Quicksand";
@@ -7,6 +9,7 @@
     background-color: #fcf7f7;
 }
 
+/*Navbar Module*/
 .navbar {
     padding: 20px;
     display: flex;
@@ -40,6 +43,7 @@
     padding: 20px;
 }
 
+/*Database Module*/
 .studentDb {
     display: flex;
     flex-direction: column;
@@ -55,7 +59,6 @@
 .studentDbTable th,
 .studentDbTable td {
     padding: 12px;
-    text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
@@ -95,6 +98,7 @@
     flex-direction: column;
 }
 
+/*Add Button*/
 .add {
     font-family: "Quicksand", sans-serif;
     font-size: 20px;
@@ -110,6 +114,7 @@
     text-align: center;
 }
 
+/*Forms*/
 .studentForm {
     display: flex;
     flex-direction: column;
@@ -146,6 +151,17 @@
     background-color: #45a049;
 }
 
+/*Icons*/
+.icon {
+    text-align: center;
+}
+
+.icon :hover{
+    cursor: pointer;
+}
+
+/*Finance Module*/
+
 .finance {
     margin: auto;
     padding: 2rem;
@@ -162,7 +178,7 @@
     padding: 2px;
 }
 
-.transaction {
+.listBlock {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -173,7 +189,49 @@
     border-radius: 5px;
 }
 
-.transaction h3, p {
+.listBlock h3, p {
     margin: 2px;
     padding: 2px;
 }
+
+/*Calender Module*/
+.calendar {
+    max-width: 900px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .calendar h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .calendar table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .calendar th,
+  .calendar td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ccc;
+  }
+  
+  .calendar th {
+    background-color: #f2f2f2;
+  }
+  
+  .calendar td div {
+    background-color: #f9f9f9;
+    padding: 4px;
+  }
+  
+  .calendar td div p {
+    margin: 0;
+  }
+  
+  .calendar td div p:first-child {
+    font-weight: bold;
+  }

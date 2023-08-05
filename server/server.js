@@ -61,6 +61,49 @@ app.delete('/deleteStudent/:id', (req, res) => {
         .catch(err => res.status(500).json({ error: err }));
 });
 
+//add lesson
+app.post('/addLessons/:id', (req, res) => {
+    const { id } = req.params;
+    const newLesson = req.body;
+    console.log('ID:', id);
+    console.log('New Lesson:', newLesson);
+
+    StudentModel.findOneAndUpdate(
+        { _id: id },
+        { $push: { lessons: newLesson } },
+        {new: true, useFindAndModify: false}
+    )
+    .then(student => res.json(student))
+    .catch(err => res.status(500).json({error: err}))    
+});
+
+//edit lesson
+app.put('/editLesson/:studentId/:lessonId', (req, res) => {
+    const { studentId, lessonId } = req.params;
+    const updatedLesson = req.body;
+
+    StudentModel.findOneAndUpdate(
+        { _id: studentId, 'lessons._id': lessonId },
+        { $set: { 'lessons.$': updatedLesson } },
+        { new: true, useFindAndModify: false }
+    )
+    .then(student => res.json(student))
+    .catch(err => res.status(500).json({ error: err }));
+});
+
+//delete lesson
+app.delete('/deleteLesson/:studentId/:lessonId', (req, res) => {
+    const { studentId, lessonId } = req.params;
+
+    StudentModel.findOneAndUpdate(
+        { _id: studentId },
+        { $pull: { lessons: { _id: lessonId } } },
+        { new: true, useFindAndModify: false }
+    )
+    .then(student => res.json(student))
+    .catch(err => res.status(500).json({ error: err }));
+});
+
 //add transaction
 app.post('/addFinance/:id', (req, res) => {
     const { id } = req.params;
