@@ -7,6 +7,15 @@ const FinanceSchema = new mongoose.Schema({
     date: { type: Date, required: true }
 });
 
+const LessonSchema = new mongoose.Schema({
+    date: { type: Date, required: true },
+    startTime: { type: Date, required: true },
+    endTime: { type: Date, required: true },
+    instrument: { type: String, required: true },
+    recurring: { type: Boolean, required: true },
+    status: {type: String, enum: ["Scheduled", "Completed", "Cancelled"], default: "Scheduled"}
+});
+
 const StudentSchema = new mongoose.Schema({
     name: { type: String, required: true },
     surname: { type: String, required: true },
@@ -19,6 +28,7 @@ const StudentSchema = new mongoose.Schema({
     citizenshipNumber: { type: Number, required: true },
     phoneNumber: { type: Number, required: true },
     finance: [FinanceSchema],
+    lessons: [LessonSchema],
     level: { type: Number, required: true }
 });
 
