@@ -8,6 +8,7 @@ const PreviewLesson = () => {
     const { studentId, lessonsId } = useParams();
     const navigate = useNavigate();
     const [lesson, setLesson] = useState(null);
+    const [student, setStudent] = useState(null);
 
     const formatTime = (time) => {
         const d = new Date(time);
@@ -23,6 +24,7 @@ const PreviewLesson = () => {
         axios.get(`http://localhost:3001/getStudent/${studentId}`)
         .then(({ data }) => {
             const foundLesson = data.lessons.find(item => item._id === lessonsId);
+            setStudent(data);
             if (foundLesson) {
             setLesson({
                 ...foundLesson,
@@ -50,7 +52,8 @@ const PreviewLesson = () => {
 
     return (
         <div className="lessonPreview">
-            <h2>{lesson.instrument} Lesson</h2>
+            <h2>{ student.name } { student.surname}</h2>
+            <h3>{lesson.instrument} Lesson</h3>
             <p><b>Date: </b>{lesson.date}</p>
             <p><b>Start Time: </b>{lesson.startTime}</p>
             <p><b>End Time: </b>{lesson.endTime}</p>

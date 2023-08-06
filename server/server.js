@@ -61,25 +61,10 @@ app.delete('/deleteStudent/:id', (req, res) => {
         .catch(err => res.status(500).json({ error: err }));
 });
 
-//get all lessons
-app.get('/getLessons', (req, res) => {
-    StudentModel.find()
-        .then(students => {
-            let allLessons = [];
-            students.forEach(student => {
-                allLessons = allLessons.concat(student.lessons);
-            });
-            res.json(allLessons);
-        })
-        .catch(err => res.status(500).json({ error: err }));
-});
-  
 //add lesson
 app.post('/addLessons/:id', (req, res) => {
     const { id } = req.params;
     const newLesson = req.body;
-    console.log('ID:', id);
-    console.log('New Lesson:', newLesson);
 
     StudentModel.findOneAndUpdate(
         { _id: id },
