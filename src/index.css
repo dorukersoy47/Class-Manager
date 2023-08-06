@@ -218,3 +218,19 @@
     margin: 10px;
 	border-radius: 5px;
 }
+
+/*Lesson Preview*/
+.lessonPreview {
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.lessonPreview img, p {
+    margin: 5px;
+}

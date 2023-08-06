@@ -19,7 +19,7 @@ const CalendarModule = () => {
   	}, []);
   
 
-    const handleClick = (event) => {
+  const handleClick = (event) => {
         navigate(`/previewLesson/${event.studentId}/${event.id}`)
     }
 
@@ -28,7 +28,7 @@ const CalendarModule = () => {
         students.forEach(student => {
           student.lessons.forEach(lesson => {
             lessonsForCalendar.push({
-              lessonId: lesson._id,
+              id: lesson._id,
               title: student.name + ' ' + student.surname + ' - ' + lesson.instrument,
               start: new Date(lesson.startTime),
               end: new Date(lesson.endTime),
