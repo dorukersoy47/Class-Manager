@@ -3,8 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const PreviewLesson = () => {
-    const { studentId, lessonId } = useParams();
-    console.log(lessonId)
+    const { studentId, lessonsId } = useParams();
+    console.log(lessonsId)
     const navigate = useNavigate();
     const [lesson, setLesson] = useState(null);
 
@@ -12,18 +12,18 @@ const PreviewLesson = () => {
         axios.get(`http://localhost:3001/getStudent/${studentId}`)
             .then(response => {
                 if (response.data.lessons) {
-                    const foundLesson = response.data.lessons.find(item => item._id.toString() === lessonId.toString());
+                    const foundLesson = response.data.lessons.find(item => item._id.toString() === lessonsId.toString());
                     if (foundLesson) {
                         setLesson(foundLesson);
                     }
                 }
             })
             .catch(error => console.error(`There was an error retrieving the lesson: ${error}`));
-    }, [studentId, lessonId]);
+    }, [studentId, lessonsId]);
 
     const handleDelete = () => {
         if (window.confirm("Are you sure you want to delete this lesson?")) {
-            axios.delete(`http://localhost:3001/deleteLesson/${studentId}/${lessonId}`)
+            axios.delete(`http://localhost:3001/deleteLesson/${studentId}/${lessonsId}`)
                 .then(() => {
                     alert('Lesson deleted successfully');
                     navigate(-1);
@@ -40,7 +40,7 @@ const PreviewLesson = () => {
             <p>End Time: {lesson.endTime}</p>
             <p>Recurring: {lesson.recurring ? "Yes" : "No"}</p>
             <p>Status: {lesson.status}</p>
-            <button onClick={() => navigate(`/editLesson/${studentId}/${lessonId}`)}>Edit</button>
+            <button onClick={() => navigate(`/editLesson/${studentId}/${lessonsId}`)}>Edit</button>
             <button onClick={handleDelete}>Delete</button>
         </div>
     );

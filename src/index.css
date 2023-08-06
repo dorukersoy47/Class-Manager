@@ -55,7 +55,7 @@
 .studentDbTable th,
 .studentDbTable td {
     padding: 12px;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
@@ -162,7 +162,7 @@
     padding: 2px;
 }
 
-.transaction {
+.listBlock {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -173,11 +173,10 @@
     border-radius: 5px;
 }
 
-.transaction h3, p {
+.listBlock h3, p {
     margin: 2px;
     padding: 2px;
 }
-<<<<<<< HEAD
 
 /*Calendar Module*/
 .Calendar {
@@ -219,5 +218,3 @@
     margin: 10px;
 	border-radius: 5px;
 }
-=======
->>>>>>> parent of 17d5a4f (feat edit/add/delete lesson)

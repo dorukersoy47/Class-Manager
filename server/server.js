@@ -8,7 +8,7 @@ app.use(cors())
 app.use(express.json())
 
 //connect to db
-mongoose.connect("mongodb://127.0.0.1:27017/classmanager")
+mongoose.connect("mongodb://127.0.0.1:27017/cs_ia_classmanager")
 
 //get student array
 app.get('/getStudents', (req, res) => {
@@ -61,7 +61,6 @@ app.delete('/deleteStudent/:id', (req, res) => {
         .catch(err => res.status(500).json({ error: err }));
 });
 
-<<<<<<< HEAD
 //get all lessons
 app.get('/getLessons', (req, res) => {
     StudentModel.find()
@@ -118,8 +117,6 @@ app.delete('/deleteLesson/:studentId/:lessonId', (req, res) => {
     .catch(err => res.status(500).json({ error: err }));
 });
 
-=======
->>>>>>> parent of 17d5a4f (feat edit/add/delete lesson)
 //add transaction
 app.post('/addFinance/:id', (req, res) => {
     const { id } = req.params;
