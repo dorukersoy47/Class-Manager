@@ -7,7 +7,7 @@ import DeleteImage from './images/Delete.svg';
 const FinanceModule = () => {
     const [finance, setFinance] = useState([]);
     const [total, setTotal] = useState(0);
-    const [lessonsNumber, setLessonsNumber] = useState();
+    const [lessonsNumber, setLessonsNumber] = useState(0);
     const lessonPrice = 400;
 
     const { id } = useParams();
@@ -29,7 +29,7 @@ const FinanceModule = () => {
         axios.get(`http://localhost:3001/getStudent/${id}`)
             .then(response => {
                 setFinance(response.data.finance);
-                setLessonsNumber(response.data.lessons.length);
+                setLessonsNumber(response.data.lessons.filter(item => item.status === "Completed").length);
             })
             .catch(error => console.error(`There was an error retrieving the data: ${error}`));
     }, [id]);
@@ -48,7 +48,7 @@ const FinanceModule = () => {
             <h3 style={{ color: total < 0 ? "red" : total === 0 ? 'black' : "green", fontWeight: "bold" }}>
                 {total}
             </h3>
-            <h3>Amount of Lessons Made: {lessonsNumber} (-{ lessonsNumber * lessonPrice})</h3>
+            <h3>Amount of Lessons Completed: {lessonsNumber} (-{ lessonsNumber * lessonPrice})</h3>
             <h2>Transaction History</h2>
             {finance.map((item, index) => (
                 <div className="listBlock" key={index}>
