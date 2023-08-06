@@ -2,10 +2,9 @@ import './index.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import FinanceImage from './images/Finance.svg';
-import EducationImage from './images/Education.svg';
+import LevelImage from './images/Level.svg';
 import DeleteImage from './images/Delete.svg';
 import EditImage from './images/Edit.svg';
-import LessonImage from './images/Lesson.svg';
 
 const Database = () => {
 
@@ -67,8 +66,7 @@ const Database = () => {
                         <th>Parent #1</th>
                         <th>Parent #2</th>
                         <th>Finance</th>
-                        <th>Education</th>
-                        <th>Lessons</th>
+                        <th>Level</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -76,7 +74,12 @@ const Database = () => {
                 <tbody>
                     {
                         students.filter(student => {
-                            student = (student[searchField]?.toString().toLowerCase().includes(searchString.toLowerCase())); return student })
+                            if (searchString === "") {
+                                return student
+                            } else if (student[searchField]?.toString().toLowerCase().includes(searchString.toLowerCase())) {
+                                return student
+                            }
+                        })
                             .map(student => {
                                 return <tr key={student._id}>
                                     <td>{student.name || ""} {student.surname || ""}</td>
@@ -87,8 +90,7 @@ const Database = () => {
                                     <td>{student.parentOneName || ""} {student.parentOneSurname || ""}</td>
                                     <td>{student.parentTwoName || ""} {student.parentTwoSurname || ""}</td>
                                     <td className="icon"><a href={`/finance/${student._id}`}> <img src={FinanceImage} alt="Finance SVG" /></a></td>
-                                    <td className="icon"><a href={`/education/${student._id}`}> <img src={EducationImage} alt="Level SVG" /></a></td>
-                                    <td className="icon"><a href={`/lessons/${student._id}`}><img src={LessonImage} alt="Lesson SVG" /></a></td>
+                                    <td className="icon"><a href={`/level/${student._id}`}> <img src={LevelImage} alt="Level SVG" /></a></td>
                                     <td className="icon"><a href={`/edit/${student._id}`}><img src={EditImage} alt="Edit SVG" /></a></td>
                                     <td className="icon"><img src={DeleteImage} alt="Delete SVG" onClick={() => handleDelete(student._id)} /></td>
                                 </tr>

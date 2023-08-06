@@ -50,7 +50,7 @@ const EditLesson = () => {
         axios.put(`http://localhost:3001/editLesson/${studentId}/${lessonsId}`, updatedLesson)
             .then(() => {
                 alert('Lesson updated successfully');
-                navigate(`/lessons/${studentId}`);
+                navigate(-1);
             })
             .catch(error => console.error(`There was an error updating the lesson: ${error}`));
     };

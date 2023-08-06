@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
-@import '~react-big-calendar/lib/css/react-big-calendar.css';
 
-/*General*/
 * {
     margin: 0;
     font-family: "Quicksand";
@@ -9,7 +7,6 @@
     background-color: #fcf7f7;
 }
 
-/*Navbar Module*/
 .navbar {
     padding: 20px;
     display: flex;
@@ -20,7 +17,7 @@
 }
 
 .navbar h1 {
-    color: #5916f7;
+    color: #7659b4;
 }
 
 .navbar .links {
@@ -43,7 +40,6 @@
     padding: 20px;
 }
 
-/*Database Module*/
 .studentDb {
     display: flex;
     flex-direction: column;
@@ -59,11 +55,12 @@
 .studentDbTable th,
 .studentDbTable td {
     padding: 12px;
+    text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
 .studentDbTable th {
-    background-color: #dddddd;
+    background-color: #c3bbd4;
     font-weight: bold;
 }
 
@@ -98,11 +95,10 @@
     flex-direction: column;
 }
 
-/*Add Button*/
 .add {
     font-family: "Quicksand", sans-serif;
     font-size: 20px;
-    background-color: #4caf50; 
+    background-color: #7855c4; 
     color: #fff; 
     padding: 7px 15px; 
     border-radius: 5px; 
@@ -114,7 +110,6 @@
     text-align: center;
 }
 
-/*Forms*/
 .studentForm {
     display: flex;
     flex-direction: column;
@@ -137,7 +132,7 @@
 
 .studentForm .submitButton {
     padding: 5px 5px;
-    background-color: #4CAF50;
+    background-color: #7855c4;
     color: white;
     border: none;
     border-radius: 4px;
@@ -148,19 +143,8 @@
 }
 
 .studentForm .submitButton:hover {
-    background-color: #45a049;
+    background-color: #7349cc;
 }
-
-/*Icons*/
-.icon {
-    text-align: center;
-}
-
-.icon :hover{
-    cursor: pointer;
-}
-
-/*Finance Module*/
 
 .finance {
     margin: auto;
@@ -178,7 +162,7 @@
     padding: 2px;
 }
 
-.listBlock {
+.transaction {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -189,49 +173,51 @@
     border-radius: 5px;
 }
 
-.listBlock h3, p {
+.transaction h3, p {
     margin: 2px;
     padding: 2px;
 }
+<<<<<<< HEAD
 
-/*Calender Module*/
-.calendar {
-    max-width: 900px;
+/*Calendar Module*/
+.Calendar {
     display: flex;
-    align-items: center;
     flex-direction: column;
-  }
-  
-  .calendar h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .calendar table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .calendar th,
-  .calendar td {
-    padding: 8px;
-    text-align: center;
-    border: 1px solid #ccc;
-  }
-  
-  .calendar th {
-    background-color: #f2f2f2;
-  }
-  
-  .calendar td div {
-    background-color: #f9f9f9;
-    padding: 4px;
-  }
-  
-  .calendar td div p {
-    margin: 0;
-  }
-  
-  .calendar td div p:first-child {
-    font-weight: bold;
-  }
+    justify-content: center;
+    align-items: center;
+}
+
+.rbc-calendar {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px #555555;
+    width: 150%;
+    max-width: 1000px;
+	height: 90%;
+    min-height: 580px;
+    
+}
+
+.rbc-event {
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #fff !important;
+
+}
+
+.rbc-toolbar {
+    background-color: #c3bbd4;
+    padding: 10px; 	
+}
+
+.rbc-toolbar-label {
+	border-radius: 5px;
+}
+
+.rbc-btn-group {
+    margin: 10px;
+	border-radius: 5px;
+}
+=======
+>>>>>>> parent of 17d5a4f (feat edit/add/delete lesson)

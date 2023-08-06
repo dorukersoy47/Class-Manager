@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const StudentModel = require('./models/Students')
+const StudentModel = require('./models/Students');
 
 const app = express()
 app.use(cors())
@@ -61,6 +61,20 @@ app.delete('/deleteStudent/:id', (req, res) => {
         .catch(err => res.status(500).json({ error: err }));
 });
 
+<<<<<<< HEAD
+//get all lessons
+app.get('/getLessons', (req, res) => {
+    StudentModel.find()
+        .then(students => {
+            let allLessons = [];
+            students.forEach(student => {
+                allLessons = allLessons.concat(student.lessons);
+            });
+            res.json(allLessons);
+        })
+        .catch(err => res.status(500).json({ error: err }));
+});
+  
 //add lesson
 app.post('/addLessons/:id', (req, res) => {
     const { id } = req.params;
@@ -104,6 +118,8 @@ app.delete('/deleteLesson/:studentId/:lessonId', (req, res) => {
     .catch(err => res.status(500).json({ error: err }));
 });
 
+=======
+>>>>>>> parent of 17d5a4f (feat edit/add/delete lesson)
 //add transaction
 app.post('/addFinance/:id', (req, res) => {
     const { id } = req.params;
