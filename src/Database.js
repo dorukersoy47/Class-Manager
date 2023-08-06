@@ -1,3 +1,4 @@
+import React from 'react';
 import './index.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -12,6 +13,28 @@ const Database = () => {
     const [students, setStudents] = useState([]);
     const [searchField, setSearchField] = useState('name');
     const [searchString, setSearchString] = useState('');
+
+    const HighlightedText = ({ text = "", highlight = "" }) => {
+        if (!highlight.trim()) {
+            return <span>{text}</span>;
+        }
+        const regex = new RegExp(`(${highlight})`, "gi");
+        const parts = text.split(regex);
+
+        return (
+            <span>
+                {parts.map((part, index) =>
+                    part.toLowerCase() === highlight.toLowerCase() ? (
+                        <span key={index} style={{ backgroundColor: "yellow" }}>
+                            {part}
+                        </span>
+                    ) : (
+                        part
+                    )
+                )}
+            </span>
+        );
+    };
 
     useEffect(() => {
         axios.get('http://localhost:3001/getStudents')
@@ -74,31 +97,32 @@ const Database = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {
-                        students.filter(student => {
-                            if (searchString === "") {
-                                return student
-                            } else if (student[searchField]?.toString().toLowerCase().includes(searchString.toLowerCase())) {
-                                return student
-                            }
-                        })
-                            .map(student => {
-                                return <tr key={student._id}>
-                                    <td>{student.name || ""} {student.surname || ""}</td>
-                                    <td>{student.birthDate ? new Date(student.birthDate).toLocaleDateString('en-GB') : ""}</td>
-                                    <td>{student.address || ""}</td>
-                                    <td>{student.citizenshipNumber || ""}</td>
-                                    <td>{student.phoneNumber || ""}</td>
-                                    <td>{student.parentOneName || ""} {student.parentOneSurname || ""}</td>
-                                    <td>{student.parentTwoName || ""} {student.parentTwoSurname || ""}</td>
-                                    <td className="icon"><a href={`/finance/${student._id}`}> <img src={FinanceImage} alt="Finance SVG" /></a></td>
-                                    <td className="icon"><a href={`/education/${student._id}`}> <img src={EducationImage} alt="Level SVG" /></a></td>
-                                    <td className="icon"><a href={`/lessons/${student._id}`}> <img src={LessonImage} alt="Lessons SVG" /></a></td>
-                                    <td className="icon"><a href={`/edit/${student._id}`}><img src={EditImage} alt="Edit SVG" /></a></td>
-                                    <td className="icon"><img src={DeleteImage} alt="Delete SVG" onClick={() => handleDelete(student._id)} /></td>
-                                </tr>
-                            })
-                    }
+                {
+                    students.filter(student => {
+                        if (searchString === "") {
+                            return student
+                        } else if (student[searchField]?.toString().toLowerCase().includes(searchString.toLowerCase())) {
+                            return student
+                        }
+                        return null;
+                    })
+                    .map(student => {
+                        return <tr key={student._id}>
+                            <td><HighlightedText text={`${student.name || ""} ${student.surname || ""}`} highlight={searchField === "name" || searchField === "surname" ? searchString : ""} /></td>
+                            <td><HighlightedText text={student.birthDate ? new Date(student.birthDate).toLocaleDateString('en-GB') : ""} highlight={searchField === "birthDate" ? searchString : ""} /></td>
+                            <td><HighlightedText text={student.address || ""} highlight={searchField === "address" ? searchString : ""} /></td>
+                            <td><HighlightedText text={student.citizenshipNumber || ""} highlight={searchField === "citizenshipNumber" ? searchString : ""} /></td>
+                            <td><HighlightedText text={student.phoneNumber || ""} highlight={searchField === "phoneNumber" ? searchString : ""} /></td>
+                            <td><HighlightedText text={`${student.parentOneName || ""} ${student.parentOneSurname || ""}`} highlight={searchField === "parentOneName" || searchField === "parentOneSurname" ? searchString : ""} /></td>
+                            <td><HighlightedText text={`${student.parentTwoName || ""} ${student.parentTwoSurname || ""}`} highlight={searchField === "parentTwoName" || searchField === "parentTwoSurname" ? searchString : ""} /></td>
+                            <td className="icon"><a href={`/finance/${student._id}`}> <img src={FinanceImage} alt="Finance SVG" /></a></td>
+                            <td className="icon"><a href={`/education/${student._id}`}> <img src={EducationImage} alt="Level SVG" /></a></td>
+                            <td className="icon"><a href={`/lessons/${student._id}`}> <img src={LessonImage} alt="Lessons SVG" /></a></td>
+                            <td className="icon"><a href={`/edit/${student._id}`}><img src={EditImage} alt="Edit SVG" /></a></td>
+                            <td className="icon"><img src={DeleteImage} alt="Delete SVG" onClick={() => handleDelete(student._id)} /></td>
+                        </tr>
+                    })
+                }
                 </tbody>
             </table>
         </div>

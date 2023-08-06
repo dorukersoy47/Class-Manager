@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import EditImage from './images/Edit.svg';
 import DeleteImage from './images/Delete.svg';
+import DownloadImage from './images/Download.svg';
+import { FinancePDF } from './FinancePDF';
 
 const FinanceModule = () => {
     const [finance, setFinance] = useState([]);
@@ -24,6 +26,18 @@ const FinanceModule = () => {
                 .catch(err => console.log(err));
         }
     };
+
+    const downloadPDF = () => {
+        axios.get(`http://localhost:3001/getFinance/${id}`)
+            .then(response => {
+                console.log('Transactions data:', response.data);
+                FinancePDF(id, response.data);
+            })
+            .catch(error => {
+                console.error('There was an error retrieving the transactions!', error);
+            });
+    };
+    
 
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${id}`)
@@ -49,7 +63,7 @@ const FinanceModule = () => {
                 {total}
             </h3>
             <h3>Amount of Lessons Completed: {lessonsNumber} (-{ lessonsNumber * lessonPrice})</h3>
-            <h2>Transaction History</h2>
+            <h2>Transaction History <img onClick={downloadPDF} src={ DownloadImage } alt="Download SVG" /></h2>
             {finance.map((item, index) => (
                 <div className="listBlock" key={index}>
                     <h3>{item.title}</h3>

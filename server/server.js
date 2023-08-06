@@ -102,6 +102,19 @@ app.delete('/deleteLesson/:studentId/:lessonId', (req, res) => {
     .catch(err => res.status(500).json({ error: err }));
 });
 
+//get transactions
+app.get('/getFinance/:id', (req, res) => {
+    StudentModel.findById(req.params.id)
+        .then(student => {
+            if(student) {
+                res.json(student.finance);
+            } else {
+                res.status(404).json({ message: 'Student not found' });
+            }
+        })
+        .catch(err => res.json({ error: err }));
+});
+
 //add transaction
 app.post('/addFinance/:id', (req, res) => {
     const { id } = req.params;
