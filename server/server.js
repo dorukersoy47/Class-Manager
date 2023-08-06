@@ -1,14 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const StudentModel = require('./models/Students')
+const StudentModel = require('./models/Students');
 
 const app = express()
 app.use(cors())
 app.use(express.json())
 
 //connect to db
-mongoose.connect("mongodb://127.0.0.1:27017/classmanager")
+mongoose.connect("mongodb://127.0.0.1:27017/cs_ia_classmanager")
 
 //get student array
 app.get('/getStudents', (req, res) => {
@@ -59,6 +59,62 @@ app.delete('/deleteStudent/:id', (req, res) => {
             }
         })
         .catch(err => res.status(500).json({ error: err }));
+});
+
+//get all lessons
+app.get('/getLessons', (req, res) => {
+    StudentModel.find()
+        .then(students => {
+            let allLessons = [];
+            students.forEach(student => {
+                allLessons = allLessons.concat(student.lessons);
+            });
+            res.json(allLessons);
+        })
+        .catch(err => res.status(500).json({ error: err }));
+});
+  
+//add lesson
+app.post('/addLessons/:id', (req, res) => {
+    const { id } = req.params;
+    const newLesson = req.body;
+    console.log('ID:', id);
+    console.log('New Lesson:', newLesson);
+
+    StudentModel.findOneAndUpdate(
+        { _id: id },
+        { $push: { lessons: newLesson } },
+        {new: true, useFindAndModify: false}
+    )
+    .then(student => res.json(student))
+    .catch(err => res.status(500).json({error: err}))    
+});
+
+//edit lesson
+app.put('/editLesson/:studentId/:lessonId', (req, res) => {
+    const { studentId, lessonId } = req.params;
+    const updatedLesson = req.body;
+
+    StudentModel.findOneAndUpdate(
+        { _id: studentId, 'lessons._id': lessonId },
+        { $set: { 'lessons.$': updatedLesson } },
+        { new: true, useFindAndModify: false }
+    )
+    .then(student => res.json(student))
+    .catch(err => res.status(500).json({ error: err }));
+});
+
+//delete lesson
+app.delete('/deleteLesson/:studentId/:lessonId', (req, res) => {
+    const { studentId, lessonId } = req.params;
+
+    StudentModel.findOneAndUpdate(
+        { _id: studentId },
+        { $pull: { lessons: { _id: lessonId } } },
+        { new: true, useFindAndModify: false }
+    )
+    .then(student => res.json(student))
+    .catch(err => res.status(500).json({ error: err }));
 });
 
 //add transaction
