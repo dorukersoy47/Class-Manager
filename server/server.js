@@ -2,13 +2,37 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const StudentModel = require('./models/Students');
+const config = require('./config.js');
 
 const app = express()
 app.use(cors())
 app.use(express.json())
 
+require('dotenv').config();
+
+const fs = require('fs');
+try {
+    const envFile = fs.readFileSync('.env', 'utf8');
+    console.log('Env file content:', envFile);
+} catch (error) {
+    console.error('Error reading .env file:', error);
+}
+
+
 //connect to db
 mongoose.connect("mongodb://127.0.0.1:27017/cs_ia_classmanager")
+
+//authentication
+app.post('/authenticate', (req, res) => {
+    const { username, password } = req.body;
+    
+    if (username === config.USERNAME && password === config.PASSWORD) {
+        res.json({ authenticated: true });
+    } else {
+        console.log(req.body)
+        res.json({ authenticated: false });
+    }
+});
 
 //get student array
 app.get('/getStudents', (req, res) => {
