@@ -90,7 +90,7 @@ const Database = () => {
                         <th>Parent #1</th>
                         <th>Parent #2</th>
                         <th>Finance</th>
-                        <th>Level</th>
+                        <th>Education</th>
                         <th>Lessons</th>
                         <th>Edit</th>
                         <th>Delete</th>
@@ -116,7 +116,7 @@ const Database = () => {
                             <td><HighlightedText text={`${student.parentOneName || ""} ${student.parentOneSurname || ""}`} highlight={searchField === "parentOneName" || searchField === "parentOneSurname" ? searchString : ""} /></td>
                             <td><HighlightedText text={`${student.parentTwoName || ""} ${student.parentTwoSurname || ""}`} highlight={searchField === "parentTwoName" || searchField === "parentTwoSurname" ? searchString : ""} /></td>
                             <td className="icon"><a href={`/finance/${student._id}`}> <img src={FinanceImage} alt="Finance SVG" /></a></td>
-                            <td className="icon"><a href={`/education/${student._id}`}> <img src={EducationImage} alt="Level SVG" /></a></td>
+                            <td className="icon"><a href={`/education/${student._id}`}> <img src={EducationImage} alt="Education SVG" /></a></td>
                             <td className="icon"><a href={`/lessons/${student._id}`}> <img src={LessonImage} alt="Lessons SVG" /></a></td>
                             <td className="icon"><a href={`/edit/${student._id}`}><img src={EditImage} alt="Edit SVG" /></a></td>
                             <td className="icon"><img src={DeleteImage} alt="Delete SVG" onClick={() => handleDelete(student._id)} /></td>

@@ -31,13 +31,13 @@ const FinanceModule = () => {
         axios.get(`http://localhost:3001/getFinance/${id}`)
             .then(response => {
                 console.log('Transactions data:', response.data);
-                FinancePDF(id, response.data);
+                FinancePDF(id, response.data, lessonsNumber);
             })
             .catch(error => {
                 console.error('There was an error retrieving the transactions!', error);
             });
     };
-    
+     
 
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${id}`)

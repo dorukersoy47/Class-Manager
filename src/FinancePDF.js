@@ -1,12 +1,14 @@
 import React from 'react';
 import { Page, Text, View, Document, pdf } from '@react-pdf/renderer';
 
-export const FinancePDF = (id, transactions) => {
+export const FinancePDF = (id, transactions, lessonsNumber) => {
+    const lessonPrice = 400;
     const MyDocument = (
         <Document>
             <Page size="A4">
                 <View>
                     <Text>Finance Transactions for Student {id}:</Text>
+                    <Text>Lessons Completed: {lessonsNumber} = -{lessonsNumber * lessonPrice}$</Text>
                     {transactions.map((transaction, index) => (
                         <View key={index}>
                             <Text>Transaction Title: {transaction.title}</Text>
