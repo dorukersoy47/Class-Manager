@@ -11,9 +11,10 @@ const LessonsModule = () => {
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${id}`)
             .then((response) => {
-                setLessons(response.data.lessons);
+                const sortedLessons = response.data.lessons.sort((a, b) => new Date(b.date) - new Date(a.date));
+                setLessons(sortedLessons);
             })
-            .catch((error) => console.error(`Error: ${error}`))
+            .catch((error) => console.error(`Error: ${error}`));
     }, [id]);
 
     const handleDelete = (lessonId) => {

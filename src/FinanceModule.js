@@ -42,11 +42,13 @@ const FinanceModule = () => {
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${id}`)
             .then(response => {
-                setFinance(response.data.finance);
+                const sortedFinance = response.data.finance.sort((a, b) => new Date(b.date) - new Date(a.date));
+                setFinance(sortedFinance);
                 setLessonsNumber(response.data.lessons.filter(item => item.status === "Completed").length);
             })
             .catch(error => console.error(`There was an error retrieving the data: ${error}`));
     }, [id]);
+    
 
     useEffect(() => {
         const totalValue = finance.reduce((total, item) => total + item.value, 0);

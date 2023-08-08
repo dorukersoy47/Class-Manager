@@ -18,7 +18,7 @@ const FreeTimes = () => {
 
     const formTimeOptions = () => {
         const options = [];
-        for (let i = 9; i <= 22; i++) {
+        for (let i = 9; i <= 21; i++) {
             options.push(i.toString().padStart(2, '0') + ":00");
             options.push(i.toString().padStart(2, '0') + ":30");
         }
@@ -85,7 +85,7 @@ const FreeTimes = () => {
                 </label>
                 <button className="submitButton" type="submit">Find Free Times</button>
             </form>
-            <h1 className="FreeTimes">Free Times</h1>
+            <h1 className="FreeTimesH1">Free Times</h1>
             <ul>
                 {freeTimes.map(time =>
                     <li className="freeTimes" key={time}>{time}</li>
