@@ -15,6 +15,7 @@ const Database = () => {
     const [searchString, setSearchString] = useState('');
 
     const HighlightedText = ({ text = "", highlight = "" }) => {
+        text = text.toString();
         if (!highlight.trim()) {
             return <span>{text}</span>;
         }
