@@ -22,16 +22,28 @@
 
 .navbar .links {
     margin-left: auto;
+    font-weight: bold;
 }
+
+.navbar .freeTimeLink {
+    background-color: #7855c4;
+    color: #fff;
+    border-radius: 50px;
+}
+
+.navbar .freeTimeLink:hover {
+    color: #000000;
+}
+
+.link:hover {
+    color :#7855c4;
+}
+
 
 .navbar a {
     margin-left: 16px;
     text-decoration: none;
     padding: 6px;
-}
-
-.navbar a:hover {
-    color: #f1356d;
 }
 
 .content {
@@ -223,7 +235,7 @@
 .lessonPreview {
     border: 1px solid #ccc;
     background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px #000000;
     border-radius: 5px;
     padding: 20px;
     display: flex;
@@ -233,4 +245,22 @@
 }
 .lessonPreview img, p {
     margin: 5px;
+}
+
+.freeTimes {
+    list-style-type: none;
+    margin: 5px 0;
+    padding: 8px;
+    background-color: #ac92e4;
+    border: 1px solid #947aca;
+    border-radius: 4px;
+    font-weight: bold;
+
+    
+}
+
+.FreeTimesH1 {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
 }

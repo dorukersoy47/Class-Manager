@@ -9,6 +9,7 @@ import Database from './Database.js';
 import FinanceModule from './FinanceModule';
 import LevelModule from './LevelModule';
 import AddStudent from './AddStudent';
+import FreeTimes from './FreeTimes';
 import AddFinance from './AddFinance';
 import EditStudent from './EditStudent';
 import EditFinance from './EditFinance';
@@ -58,7 +59,8 @@ function App() {
 							<Route path="/database" element={<Database />} />
 							<Route path="/finance/:id" element={<FinanceModule />} />
 							<Route path="/level/:id" element={<LevelModule />} />
-							<Route path="/add" element={<AddStudent />} />
+                            <Route path="/add" element={<AddStudent />} />
+                            <Route path="freeTimes" element={<FreeTimes />} />
 							<Route path="/addFinance/:id" element={<AddFinance />} />
 							<Route path="/edit/:id" element={<EditStudent />} />
 							<Route path="/editFinance/:studentId/:financeId" element={<EditFinance />} />

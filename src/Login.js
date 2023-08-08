@@ -24,10 +24,10 @@ const Login = ({ setAuthenticated }) => {
     };
 
     return (
-        <div>
-            <input type="text" name="username" onChange={handleChange} placeholder="Username" />
-            <input type="password" name="password" onChange={handleChange} placeholder="Password" />
-            <button onClick={handleLogin}>Login</button>
+        <div className="studentForm">
+            <input className="formInput" style={{marginBottom: "10px"}} type="text" name="username" onChange={handleChange} placeholder="Username" />
+            <input className="formInput" style={{marginBottom: "10px"}} type="password" name="password" onChange={handleChange} placeholder="Password" />
+            <button className="submitButton" onClick={handleLogin}>Login</button>
         </div>
     );
 };
