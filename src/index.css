@@ -22,13 +22,27 @@
 
 .navbar .links {
     margin-left: auto;
+}
+
+.navbar .link {
     font-weight: bold;
+}
+
+.navbar .pdfLink {
+    font-weight: none;
+    color: #194fff
+}
+
+.navbar .pdfLink:hover {
+    font-weight: none;
+    color: #002ab4
 }
 
 .navbar .freeTimeLink {
     background-color: #7855c4;
     color: #fff;
     border-radius: 50px;
+    font-weight: bold;
 }
 
 .navbar .freeTimeLink:hover {

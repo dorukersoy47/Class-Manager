@@ -4,6 +4,7 @@ import axios from 'axios';
 import './index.css';
 import Login from './Login';
 import Navbar from './Navbar.js';
+import PDF from './PDF.js';
 import CalendarModule from './CalendarModule.js';
 import Database from './Database.js';
 import FinanceModule from './FinanceModule';
@@ -68,7 +69,8 @@ function App() {
 							<Route path="/addLesson/:id" element={<AddLesson />}></Route>
 							<Route path="/editLesson/:studentId/:lessonsId" element={<EditLesson />}></Route>
 							<Route path="/previewLesson/:studentId/:lessonsId" element={<PreviewLesson />}></Route>
-							<Route path="/education/:id" element={<EducationModule />} />
+                            <Route path="/education/:id" element={<EducationModule />} />
+                            <Route path="/pdf" element={ <PDF/>} />
                         </Routes>
                     ) : (
                         <Login setAuthenticated={setAuthenticated} />
