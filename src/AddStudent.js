@@ -27,14 +27,27 @@ const AddStudent = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:3001/addStudent', student)
+    
+        const education = Array.from({ length: 8 }, (_, index) => ({
+            level: index + 1,
+            startDate: null,
+            endDate: null
+        }));
+    
+        const studentData = {
+            ...student,
+            education
+        };
+    
+        axios.post('http://localhost:3001/addStudent', studentData)
             .then(response => {
                 alert('Student added successfully');
                 navigate('/database');
                 window.location.reload();
             })
             .catch(error => console.error(`There was an error adding the student: ${error}`));
-    }
+    };
+    
 
     return (
         <form className="studentForm" onSubmit={handleSubmit}>

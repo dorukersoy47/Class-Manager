@@ -1,4 +1,3 @@
-import React from 'react';
 import { Page, Text, View, Document, pdf } from '@react-pdf/renderer';
 
 export const FinancePDF = (id, transactions, lessonsNumber) => {

@@ -30,7 +30,7 @@
 
 .navbar .pdfLink {
     font-weight: none;
-    color: #194fff
+    color: #194fff;
 }
 
 .navbar .pdfLink:hover {
@@ -257,7 +257,7 @@
     justify-content: center;
     align-items: center;
 }
-.lessonPreview img, p {
+.lessonPreviewp {
     margin: 5px;
 }
 
@@ -268,13 +268,74 @@
     background-color: #ac92e4;
     border: 1px solid #947aca;
     border-radius: 4px;
-    font-weight: bold;
-
-    
+    font-weight: bold    
 }
 
 .FreeTimesH1 {
     display: flex;
     justify-content: center;
     margin: 20px;
+}
+
+.educationModule {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+}
+
+.educationModuleh1 {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+
+.educationModulep {
+    text-align: center;
+    color: #0026a5;
+    background-color: #83a0ff;
+    border: 2px solid #002ab4;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.educationList {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    margin-bottom: 20px;
+    background-color: #ac92e4;
+    border: 2px solid #646464;
+    border-radius: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.educationLevel {
+    background-color: #ac92e4 ;
+    justify-content: left;
+    align-items: left;
+}
+
+.educationLevelh2 {
+    background-color: #ac92e4;
+    padding-left: 10px;
+    padding-right: 30px;
+}
+
+.educationLevelp {
+    background-color: #ac92e4;
+}
+
+.educationLevela {
+    background-color: #ac92e4;
+}
+
+.educationLevelDiv {
+    flex-grow: 1; 
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    background-color: #ac92e4;
+    margin-right: 10px;
 }

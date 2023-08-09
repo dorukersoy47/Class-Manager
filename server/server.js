@@ -169,6 +169,33 @@ app.delete('/deleteFinance/:studentId/:financeId', (req, res) => {
     .catch(err => res.status(500).json({ error: err }));
 });
 
+//get education
+app.get('/getEducation/:id', (req, res) => {
+    StudentModel.findById(req.params.id)
+        .then(student => {
+            if(student) {
+                res.json(student.education);
+            } else {
+                res.status(404).json({ message: 'Student not found' });
+            }
+        })
+        .catch(err => res.json({ error: err }));
+});
+
+//edit education
+app.put('/editEducation/:studentId/:educationId', (req, res) => {
+    const { studentId, educationId } = req.params;
+    const updatedEducation = req.body;
+
+    StudentModel.findOneAndUpdate(
+        { _id: studentId, 'education._id': educationId },
+        { $set: { 'education.$': updatedEducation } },
+        { new: true, useFindAndModify: false }
+    )
+    .then(student => res.json(student))
+    .catch(err => res.status(500).json({ error: err }));
+})
+
 //running server
 app.listen(3001, () => {
     console.log("Server is running :)")

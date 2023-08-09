@@ -54,13 +54,13 @@ const PreviewLesson = () => {
         <div className="lessonPreview">
             <h2>{ student.name } { student.surname}</h2>
             <h3>{lesson.instrument} Lesson</h3>
-            <p><b>Date: </b>{lesson.date}</p>
-            <p><b>Start Time: </b>{lesson.startTime}</p>
-            <p><b>End Time: </b>{lesson.endTime}</p>
-            <p><b>Recurring: </b>{lesson.recurring ? "Yes" : "No"}</p>
-            <p><b>Status: </b>{lesson.status}</p>
-            <a href={`/editLesson/${studentId}/${lessonsId}`}><img src={EditImage} alt="Edit SVG" /></a>
-            <img src={DeleteImage} alt="Delete SVG" onClick={() => handleDelete()} />
+            <p className="lessonPreviewp"><b>Date: </b>{lesson.date}</p>
+            <p className="lessonPreviewp"><b>Start Time: </b>{lesson.startTime}</p>
+            <p className="lessonPreviewp"><b>End Time: </b>{lesson.endTime}</p>
+            <p className="lessonPreviewp"><b>Recurring: </b>{lesson.recurring ? "Yes" : "No"}</p>
+            <p className="lessonPreviewp"><b>Status: </b>{lesson.status}</p>
+            <a className="lessonPreviewp" href={`/editLesson/${studentId}/${lessonsId}`}><img src={EditImage} alt="Edit SVG" /></a>
+            <img className="lessonPreviewp" src={DeleteImage} alt="Delete SVG" onClick={() => handleDelete()} />
         </div>
     );
 };

@@ -18,6 +18,7 @@ import AddLesson from './AddLesson';
 import EditLesson from './EditLesson';
 import PreviewLesson from './PreviewLesson';
 import EducationModule from './EducationModule';
+import EditEducation from './EditEducation.js';
 import { addRecurringLesson } from './addRecurringLesson'; 
 
 function App() {
@@ -65,9 +66,10 @@ function App() {
 							<Route path="/editFinance/:studentId/:financeId" element={<EditFinance />} />
 							<Route path="/lessons/:id" element={<LessonsModule />}></Route>
 							<Route path="/addLesson/:id" element={<AddLesson />}></Route>
-							<Route path="/editLesson/:studentId/:lessonsId" element={<EditLesson />}></Route>
-							<Route path="/previewLesson/:studentId/:lessonsId" element={<PreviewLesson />}></Route>
+							<Route path="/editLesson/:studentId/:lessonsId" element={<EditLesson />}/>
+							<Route path="/previewLesson/:studentId/:lessonsId" element={<PreviewLesson />}/>
                             <Route path="/education/:id" element={<EducationModule />} />
+                            <Route path="/editEducation/:studentId/:educationId" element={<EditEducation />} />
                             <Route path="/pdf" element={ <PDF/>} />
                         </Routes>
                     ) : (
