@@ -8,17 +8,6 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-require('dotenv').config();
-
-const fs = require('fs');
-try {
-    const envFile = fs.readFileSync('.env', 'utf8');
-    console.log('Env file content:', envFile);
-} catch (error) {
-    console.error('Error reading .env file:', error);
-}
-
-
 //connect to db
 mongoose.connect("mongodb://127.0.0.1:27017/cs_ia_classmanager")
 
