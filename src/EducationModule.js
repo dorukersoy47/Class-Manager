@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import EducationPDF from './EducationPDF';
+import { EducationPDF } from './EducationPDF';
 import EditImage from './images/Edit.svg'
 
 const EducationModule = () => { 
@@ -18,7 +18,7 @@ const EducationModule = () => {
     }, [id]);
     
     const downloadPDF = () => {
-        axios.get(`http://localhost:3001/getFinance/${id}`)
+        axios.get(`http://localhost:3001/getEducation/${id}`)
             .then(response => {
                 EducationPDF(id, response.data)
             })
