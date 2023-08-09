@@ -16,8 +16,7 @@ const EditStudent = () => {
         birthDate: '',
         address: '',
         citizenshipNumber: '',
-        phoneNumber: '',
-        level: ''
+        phoneNumber: ''
     });
 
     useEffect(() => {
@@ -89,11 +88,6 @@ const EditStudent = () => {
             <label className="formLabel">
                 Phone Number:*
                 <input className="formInput" type="number" name="phoneNumber" value={student.phoneNumber} onChange={handleChange} required />
-            </label>
-            <h3>Education</h3>
-            <label className="formLabel">
-                Level:*
-                <input className="formInput" type="number" name="level" value={student.level} onChange={handleChange} required />
             </label>
             <button className="submitButton" type="submit">Update Student</button>
         </form>

@@ -16,6 +16,12 @@ const LessonSchema = new mongoose.Schema({
     status: {type: String, enum: ["Scheduled", "Completed", "Cancelled"], default: "Scheduled"}
 });
 
+const EducationSchema = new mongoose.Schema({
+    level: {type: Number, required: true},
+    startDate: { type: Date, required: false },
+    endDate: {type: Date, required: false }
+})
+
 const StudentSchema = new mongoose.Schema({
     name: { type: String, required: true },
     surname: { type: String, required: true },
@@ -29,7 +35,7 @@ const StudentSchema = new mongoose.Schema({
     phoneNumber: { type: Number, required: true },
     finance: [FinanceSchema],
     lessons: [LessonSchema],
-    level: { type: Number, required: true }
+    education: [EducationSchema]
 });
 
 const StudentModel = mongoose.model("students", StudentSchema);

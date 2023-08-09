@@ -15,8 +15,7 @@ const AddStudent = () => {
         birthDate: '',
         address: '',
         citizenshipNumber: '',
-        phoneNumber: '',
-        level: ''
+        phoneNumber: ''
     });
 
     const handleChange = (e) => {
@@ -79,11 +78,6 @@ const AddStudent = () => {
             <label className="formLabel">
                 Phone Number:*
                 <input className="formInput" type="number" name="phoneNumber" placeholder="5..." onChange={handleChange} required />
-            </label>
-            <h3>Education</h3>
-            <label className="formLabel">
-                Level:*
-                <input className="formInput" type="number" name="level" onChange={handleChange} required />
             </label>
             <button className="submitButton" type="submit">Add Student</button>
         </form>

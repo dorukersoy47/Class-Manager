@@ -8,7 +8,6 @@ import PDF from './PDF.js';
 import CalendarModule from './CalendarModule.js';
 import Database from './Database.js';
 import FinanceModule from './FinanceModule';
-import LevelModule from './LevelModule';
 import AddStudent from './AddStudent';
 import FreeTimes from './FreeTimes';
 import AddFinance from './AddFinance';
@@ -59,7 +58,6 @@ function App() {
                             <Route path="/" element={<CalendarModule />} />
 							<Route path="/database" element={<Database />} />
 							<Route path="/finance/:id" element={<FinanceModule />} />
-							<Route path="/level/:id" element={<LevelModule />} />
                             <Route path="/add" element={<AddStudent />} />
                             <Route path="freeTimes" element={<FreeTimes />} />
 							<Route path="/addFinance/:id" element={<AddFinance />} />
