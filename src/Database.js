@@ -83,7 +83,7 @@ const Database = () => {
             <table className="studentDbTable">
                 <thead>
                     <tr>
-                        <th>Person</th>
+                        <th>Student</th>
                         <th>Birth Date</th>
                         <th>Address</th>
                         <th>Citizenship Number</th>
