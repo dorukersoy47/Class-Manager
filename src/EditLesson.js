@@ -17,42 +17,39 @@ const EditLesson = () => {
 
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${studentId}`)
-            .then(response => {
-                if (response.data.lessons) {
-                    const lessonsItem = response.data.lessons.find(item => item._id.toString() === lessonsId.toString());
-                    if (lessonsItem) {
-                        setLessons({
-                            ...lessonsItem,
-                            date: new Date(lessonsItem.date).toISOString().slice(0, 10),
-                            startTime: new Date(lessonsItem.startTime).toISOString().slice(0, 16),
-                            endTime: new Date(lessonsItem.endTime).toISOString().slice(0, 16)
-                        });
-                    }
+        .then(response => {
+            if (response.data.lessons) {
+                const lessonsItem = response.data.lessons.find(item => item._id.toString() === lessonsId.toString());
+                if (lessonsItem) {
+                    const date = new Date(lessonsItem.date);
+                    const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+    
+                    const formatDateTime = datetime => {
+                        const dateObj = new Date(datetime);
+                        return `${dateObj.getFullYear()}-${String(dateObj.getMonth() + 1).padStart(2, '0')}-${String(dateObj.getDate()).padStart(2, '0')}T${String(dateObj.getHours()).padStart(2, '0')}:${String(dateObj.getMinutes()).padStart(2, '0')}`;
+                    };
+    
+                    setLessons({...lessonsItem, date: formattedDate, startTime: formatDateTime(lessonsItem.startTime), endTime: formatDateTime(lessonsItem.endTime) });
                 }
-            })
-            .catch(error => console.error(`There was an error retrieving the lesson: ${error}`));
+            }
+        })
+        .catch(error => console.error(error));
     }, [studentId, lessonsId]);
+    
 
     const handleChange = (e) => {
-        setLessons({
-            ...lessons,
-            [e.target.name]: e.target.value
-        });
+        setLessons({ ...lessons, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const updatedLesson = {
-            ...lessons,
-            startTime: new Date(lessons.startTime),
-            endTime: new Date(lessons.endTime)
-        };
+        const updatedLesson = { ...lessons, startTime: new Date(lessons.startTime), endTime: new Date(lessons.endTime) };
         axios.put(`http://localhost:3001/editLesson/${studentId}/${lessonsId}`, updatedLesson)
             .then(() => {
                 alert('Lesson updated successfully');
                 navigate(-1);
             })
-            .catch(error => console.error(`There was an error updating the lesson: ${error}`));
+            .catch(error => console.error(error));
     };
 
     return (

@@ -18,32 +18,31 @@ const CalendarModule = () => {
 		  		.catch((err) => console.log(err));
 	  	}, []);
 
-  const handleClick = (event) => {
-        navigate(`/previewLesson/${event.studentId}/${event.id}`)
-    }
+	const handleClick = (event) => {
+		navigate(`/previewLesson/${event.studentId}/${event.id}`)
+	}
 
     const formatLessonsForCalendar = () => {
         const lessonsForCalendar = [];
         students.forEach(student => {
-          student.lessons.forEach(lesson => {
-            lessonsForCalendar.push({
-              id: lesson._id,
-              title: student.name + ' ' + student.surname + ' - ' + lesson.instrument,
-              start: new Date(lesson.startTime),
-              end: new Date(lesson.endTime),
-              studentId: student._id
-            });
-          });
+          	student.lessons.forEach(lesson => {
+            	lessonsForCalendar.push({
+              		id: lesson._id,
+              		title: student.name + ' ' + student.surname + ' - ' + lesson.instrument,
+              		start: new Date(lesson.startTime),
+              		end: new Date(lesson.endTime),
+              		studentId: student._id
+            	});
+          	});
         });
-        return lessonsForCalendar;
-      };
+		return lessonsForCalendar;
+	};
       
 
-  return (
-        <div className="Calendar">
-      <Calendar
-        
-                localizer={localizer}
+  	return (
+		<div className="Calendar">
+      		<Calendar
+				localizer={localizer}
                 events={formatLessonsForCalendar()}
                 startAccessor="start"
                 endAccessor="end"

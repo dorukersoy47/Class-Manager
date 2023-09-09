@@ -11,13 +11,13 @@ const PreviewLesson = () => {
     const [student, setStudent] = useState(null);
 
     const formatTime = (time) => {
-        const d = new Date(time);
-        return `${String(d.getHours()).padStart(2, '0')}.${String(d.getMinutes()).padStart(2, '0')}`;
+        const date = new Date(time);
+        return `${String(date.getHours()).padStart(2, '0')}.${String(date.getMinutes()).padStart(2, '0')}`;
     };
 
-    const formatDate = (date) => {
-        const d = new Date(date);
-        return `${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}.${d.getFullYear()}`;
+    const formatDate = (Date) => {
+        const date = new Date(Date);
+        return `${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}.${date.getFullYear()}`;
     };
 
     useEffect(() => {
@@ -26,27 +26,20 @@ const PreviewLesson = () => {
             const foundLesson = data.lessons.find(item => item._id === lessonsId);
             setStudent(data);
             if (foundLesson) {
-            setLesson({
-                ...foundLesson,
-                date: formatDate(foundLesson.date),
-                startTime: formatTime(foundLesson.startTime),
-                endTime: formatTime(foundLesson.endTime),
-            });
+                setLesson({...foundLesson, date: formatDate(foundLesson.date), startTime: formatTime(foundLesson.startTime), endTime: formatTime(foundLesson.endTime) });
             }
         })
-        .catch(error => console.error(`There was an error retrieving the lesson: ${error}`));
+        .catch(error => console.error(error));
     }, [studentId, lessonsId]);
-
-    if (!lesson) return <div>Loading...</div>;
 
     const handleDelete = () => {
         if (window.confirm("Are you sure you want to delete this lesson?")) {
             axios.delete(`http://localhost:3001/deleteLesson/${studentId}/${lessonsId}`)
-                .then(() => {
-                    alert('Lesson deleted successfully');
-                    navigate(-1);
-                })
-                .catch(error => console.error(`There was an error deleting the lesson: ${error}`));
+            .then(() => {
+                alert('Lesson deleted successfully');
+                navigate(-1);
+            })
+            .catch(error => console.error(error));
         }
     };
 

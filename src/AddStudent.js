@@ -19,10 +19,7 @@ const AddStudent = () => {
     });
 
     const handleChange = (e) => {
-        setStudent({
-            ...student,
-            [e.target.name]: e.target.value
-        });
+        setStudent({...student, [e.target.name]: e.target.value });
     }
 
     const handleSubmit = (e) => {
@@ -34,18 +31,15 @@ const AddStudent = () => {
             endDate: null
         }));
     
-        const studentData = {
-            ...student,
-            education
-        };
+        const studentData = {...student, education };
     
         axios.post('http://localhost:3001/addStudent', studentData)
-            .then(response => {
-                alert('Student added successfully');
-                navigate('/database');
-                window.location.reload();
-            })
-            .catch(error => console.error(`There was an error adding the student: ${error}`));
+        .then(response => {
+            alert('Student added successfully');
+            navigate('/database');
+            window.location.reload();
+        })
+        .catch(error => console.error(error));
     };
     
 

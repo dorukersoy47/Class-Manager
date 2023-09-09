@@ -26,12 +26,7 @@ const Database = () => {
             <span>
                 {parts.map((part, index) =>
                     part.toLowerCase() === highlight.toLowerCase() ? (
-                        <span key={index} style={{ backgroundColor: "yellow" }}>
-                            {part}
-                        </span>
-                    ) : (
-                        part
-                    )
+                        <span key={index} style={{ backgroundColor: "yellow" }}>{part}</span>) : ( part )
                 )}
             </span>
         );
@@ -39,20 +34,20 @@ const Database = () => {
 
     useEffect(() => {
         axios.get('http://localhost:3001/getStudents')
-            .then(users => setStudents(users.data))
-            .catch(err => console.log(err))
+        .then(users => setStudents(users.data))
+        .catch(err => console.log(err))
     }, []);
 
     const handleDelete = (id) => {
         if (window.confirm("Are you sure you want to delete this student?")) {
             axios.delete(`http://localhost:3001/deleteStudent/${id}`)
-                .then(res => {
-                    if (res.status === 200) {
-                        setStudents(students.filter(student => student._id !== id));
-                    }
-                    window.location.reload();
-                })
-                .catch(err => console.log(err))
+            .then(res => {
+                if (res.status === 200) {
+                    setStudents(students.filter(student => student._id !== id));
+                }
+                window.location.reload();
+            })
+            .catch(err => console.log(err))
         }
     };
 

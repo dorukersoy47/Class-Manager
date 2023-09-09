@@ -10,10 +10,10 @@ const FreeTimes = () => {
 
     useEffect(() => {
         axios.get('http://localhost:3001/getStudents')
-            .then((response) => {
-                setLessons([].concat(...response.data.map(student => student.lessons)));
-            })
-            .catch((err) => console.log(err));
+        .then((response) => {
+            setLessons([].concat(...response.data.map(student => student.lessons)));
+        })
+        .catch((err) => console.log(err));
     }, []);
 
     const formTimeOptions = () => {
@@ -39,7 +39,7 @@ const FreeTimes = () => {
                 while (currentTime < lessonEnd) {
                     const formattedTime = currentTime.getHours().toString().padStart(2, '0') + ':' + currentTime.getMinutes().toString().padStart(2, '0');
                     lessonTimesThatDay.push(formattedTime);
-                    currentTime.setMinutes(currentTime.getMinutes() + 30); // Increment by half an hour
+                    currentTime.setMinutes(currentTime.getMinutes() + 30);
                 }
             }
         });

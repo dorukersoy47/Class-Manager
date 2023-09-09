@@ -17,35 +17,33 @@ const FinanceModule = () => {
     const handleDelete = (financeId) => {
         if (window.confirm("Are you sure you want to delete this transaction?")) {
             axios.delete(`http://localhost:3001/deleteFinance/${id}/${financeId}`)
-                .then(res => {
-                    if (res.status === 200) {
-                        setFinance(finance.filter(item => item._id !== financeId));
-                        setTotal(total - finance.find(item => item._id === financeId).value);
-                    }
-                })
-                .catch(err => console.log(err));
+            .then(res => {
+                if (res.status === 200) {
+                    setFinance(finance.filter(item => item._id !== financeId));
+                    setTotal(total - finance.find(item => item._id === financeId).value);
+                }
+            })
+            .catch(error => console.log(error));
         }
     };
 
     const downloadPDF = () => {
         axios.get(`http://localhost:3001/getFinance/${id}`)
-            .then(response => {
-                FinancePDF(id, response.data, lessonsNumber);
-            })
-            .catch(error => {
-                console.error('There was an error retrieving the transactions!', error);
-            });
+        .then(response => {
+            FinancePDF(id, response.data, lessonsNumber);
+        })
+        .catch(error => console.error(error));
     };
      
 
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${id}`)
-            .then(response => {
-                const sortedFinance = response.data.finance.sort((a, b) => new Date(b.date) - new Date(a.date));
-                setFinance(sortedFinance);
-                setLessonsNumber(response.data.lessons.filter(item => item.status === "Completed").length);
-            })
-            .catch(error => console.error(`There was an error retrieving the data: ${error}`));
+        .then(response => {
+            const sortedFinance = response.data.finance.sort((a, b) => new Date(b.date) - new Date(a.date));
+            setFinance(sortedFinance);
+            setLessonsNumber(response.data.lessons.filter(item => item.status === "Completed").length);
+        })
+        .catch(error => console.error(error));
     }, [id]);
     
 

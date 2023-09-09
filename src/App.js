@@ -42,11 +42,11 @@ function App() {
     useEffect(() => {
         addRecurringLesson(students);
 
-    const intervalId = setInterval(() => {
-        addRecurringLesson(students);
-    }, 60000);
+        const intervalId = setInterval(() => {
+            addRecurringLesson(students);
+        }, 60000);
 
-    return () => clearInterval(intervalId);
+        return () => clearInterval(intervalId);
   }, [students]);
 
 	return (

@@ -11,16 +11,14 @@ const Login = ({ setAuthenticated }) => {
 
     const handleLogin = () => {
         axios.post('http://localhost:3001/authenticate', credentials)
-            .then((response) => {
-                if (response.data.authenticated) {
-                    setAuthenticated(true);
-                } else {
-                    alert('Invalid credentials');
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        .then((response) => {
+            if (response.data.authenticated) {
+                setAuthenticated(true);
+            } else {
+                alert('Invalid credentials');
+            }
+        })
+        .catch(error => console.error(error));
     };
 
     return (

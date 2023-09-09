@@ -14,20 +14,17 @@ const AddFinance = () => {
     });
 
     const handleChange = (e) => {
-        setFinance({
-            ...finance,
-            [e.target.name]: e.target.value
-        });
+        setFinance({...finance, [e.target.name]: e.target.value});
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post(`http://localhost:3001/addFinance/${id}`, finance)
-            .then(response => {
-                alert('Finance added successfully');
-                navigate(`/finance/${id}`);
-            })
-            .catch(error => console.error(`There was an error adding the finance: ${error}`));
+        .then(response => {
+            alert('Finance added successfully');
+            navigate(`/finance/${id}`);
+        })
+        .catch(error => console.error(error));
     }
 
     return (

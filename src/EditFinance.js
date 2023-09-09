@@ -15,25 +15,22 @@ const EditFinance = () => {
 
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${studentId}`)
-            .then(response => {
-                if (response.data.finance) {
-                    const financeItem = response.data.finance.find(item => item._id.toString() === financeId.toString());
-                    if (financeItem) {
-                        const date = new Date(financeItem.date);
-                        const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
-                        setFinance({ ...financeItem, date: formattedDate });
-                    }
+        .then(response => {
+            if (response.data.finance) {
+                const financeItem = response.data.finance.find(item => item._id.toString() === financeId.toString());
+                if (financeItem) {
+                    const date = new Date(financeItem.date);
+                    const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+                    setFinance({ ...financeItem, date: formattedDate });
                 }
-            })
-            .catch(error => console.error(`There was an error retrieving the finance: ${error}`));
+            }
+        })
+        .catch(error => console.error(error));
     }, [studentId, financeId]);
 
 
     const handleChange = (e) => {
-        setFinance({
-            ...finance,
-            [e.target.name]: e.target.value
-        });
+        setFinance({ ...finance, [e.target.name]: e.target.value});
     }
 
     const handleSubmit = (e) => {

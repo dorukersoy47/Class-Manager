@@ -16,10 +16,7 @@ const AddLesson = () => {
     });
 
     const handleChange = (e) => {
-        setLessons({
-            ...lessons,
-            [e.target.name]: e.target.value
-        });
+        setLessons({...lessons, [e.target.name]: e.target.value});
     };
 
     const handleSubmit = (e) => {
@@ -28,18 +25,14 @@ const AddLesson = () => {
         const startDate = new Date(date + 'T' + startTime + ':00');
         const endDate = new Date(date + 'T' + endTime + ':00');
     
-        const newLesson = {
-            ...lessons,
-            startTime: startDate,
-            endTime: endDate
-        };
+        const newLesson = { ...lessons, startTime: startDate, endTime: endDate};
     
         axios.post(`http://localhost:3001/addLessons/${id}`, newLesson)
-            .then(response => {
-                alert('Lesson added succesfully');
-                navigate(`/lessons/${id}`);
-            })
-            .catch(error => console.error(`There was an error adding the lesson: ${error}`));
+        .then(response => {
+            alert('Lesson added succesfully');
+            navigate(`/lessons/${id}`);
+        })
+        .catch(error => console.error(error));
     };
     
 

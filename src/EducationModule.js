@@ -14,17 +14,13 @@ const EducationModule = () => {
             .then(response => {
                 setEducationLevels(response.data.education);
             })
-            .catch(error => console.error(`There was an error retrieving the data: ${error}`));
+            .catch(error => console.error(error));
     }, [id]);
     
     const downloadPDF = () => {
         axios.get(`http://localhost:3001/getEducation/${id}`)
-            .then(response => {
-                EducationPDF(id, response.data)
-            })
-            .catch(error => {
-                console.error('There was an error retrieving the data!', error);
-            })
+        .then(response => { EducationPDF(id, response.data) })
+        .catch(error => console.error(error));
     }
 
     return ( 

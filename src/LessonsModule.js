@@ -10,22 +10,22 @@ const LessonsModule = () => {
 
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${id}`)
-            .then((response) => {
-                const sortedLessons = response.data.lessons.sort((a, b) => new Date(b.date) - new Date(a.date));
-                setLessons(sortedLessons);
-            })
-            .catch((error) => console.error(`Error: ${error}`));
+        .then((response) => {
+            const sortedLessons = response.data.lessons.sort((a, b) => new Date(b.date) - new Date(a.date));
+            setLessons(sortedLessons);
+        })
+        .catch((error) => console.error(error));
     }, [id]);
 
     const handleDelete = (lessonId) => {
         if (window.confirm("Are you sure you want to delete this transaction?")) {
             axios.delete(`http://localhost:3001/deleteLesson/${id}/${lessonId}`)
-                .then(res => {
-                    if (res.status === 200) {
-                        setLessons(lessons.filter(item => item._id !== lessonId));
-                    }
-                })
-                .catch(err => console.log(err));
+            .then(res => {
+                if (res.status === 200) {
+                    setLessons(lessons.filter(item => item._id !== lessonId));
+                }
+            })
+            .catch(error => console.log(error));
         }
     };
 

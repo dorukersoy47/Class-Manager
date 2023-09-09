@@ -18,7 +18,6 @@ app.post('/authenticate', (req, res) => {
     if (username === config.USERNAME && password === config.PASSWORD) {
         res.json({ authenticated: true });
     } else {
-        console.log(req.body)
         res.json({ authenticated: false });
     }
 });
@@ -26,23 +25,23 @@ app.post('/authenticate', (req, res) => {
 //get student array
 app.get('/getStudents', (req, res) => {
     StudentModel.find()
-        .then(users => res.json(users))
-        .catch(err => res.json({ error: err }));
+    .then(users => res.json(users))
+    .catch(err => res.json({ error: err }));
 })
 
 //get single student by id
 app.get('/getStudent/:id', (req, res) => {
     StudentModel.findById(req.params.id)
-        .then(student => res.json(student))
-        .catch(err => res.json({ error: err }));
+    .then(student => res.json(student))
+    .catch(err => res.json({ error: err }));
 });
 
 //add student
 app.post('/addStudent', (req, res) => {
     const newStudent = new StudentModel(req.body);
     newStudent.save()
-        .then(() => res.json({ message: 'Student created' }))
-        .catch(err => res.json({ error: err }));
+    .then(() => res.json({ message: 'Student created' }))
+    .catch(err => res.json({ error: err }));
 });
 
 //edit student info
@@ -51,27 +50,27 @@ app.put('/editStudent/:id', (req, res) => {
     const newStudentData = req.body;
 
     StudentModel.findByIdAndUpdate(id, newStudentData, { new: true })
-        .then(student => {
-            if (student) {
-                res.json(student);
-            } else {
-                res.status(404).json({ message: 'Student not found' });
-            }
-        })
-        .catch(err => res.status(500).json({ error: err }));
+    .then(student => {
+        if (student) {
+            res.json(student);
+        } else {
+            res.status(404).json({ message: 'Student not found' });
+        }
+    })
+    .catch(err => res.status(500).json({ error: err }));
 });
 
 //delete student 
 app.delete('/deleteStudent/:id', (req, res) => {
     StudentModel.findByIdAndRemove(req.params.id)
-        .then(result => {
-            if (result) {
-                res.status(200).send({ message: 'Student deleted' });
-            } else {
-                res.status(404).send({ message: 'Student not found' });
-            }
-        })
-        .catch(err => res.status(500).json({ error: err }));
+    .then(result => {
+        if (result) {
+            res.status(200).send({ message: 'Student deleted' });
+        } else {
+            res.status(404).send({ message: 'Student not found' });
+        }
+    })
+    .catch(err => res.status(500).json({ error: err }));
 });
 
 //add lesson
@@ -85,7 +84,7 @@ app.post('/addLessons/:id', (req, res) => {
         {new: true, useFindAndModify: false}
     )
     .then(student => res.json(student))
-    .catch(err => res.status(500).json({error: err}))    
+    .catch(err => res.json({ error: err }));
 });
 
 //edit lesson
@@ -99,7 +98,7 @@ app.put('/editLesson/:studentId/:lessonId', (req, res) => {
         { new: true, useFindAndModify: false }
     )
     .then(student => res.json(student))
-    .catch(err => res.status(500).json({ error: err }));
+    .catch(err => res.json({ error: err }));
 });
 
 //delete lesson
@@ -112,20 +111,20 @@ app.delete('/deleteLesson/:studentId/:lessonId', (req, res) => {
         { new: true, useFindAndModify: false }
     )
     .then(student => res.json(student))
-    .catch(err => res.status(500).json({ error: err }));
+    .catch(err => res.json({ error: err }));
 });
 
 //get transactions
 app.get('/getFinance/:id', (req, res) => {
     StudentModel.findById(req.params.id)
-        .then(student => {
-            if(student) {
-                res.json(student.finance);
-            } else {
-                res.status(404).json({ message: 'Student not found' });
-            }
-        })
-        .catch(err => res.json({ error: err }));
+    .then(student => {
+        if(student) {
+            res.json(student.finance);
+        } else {
+            res.status(404).json({ message: 'Student not found' });
+        }
+    })
+    .catch(err => res.json({ error: err }));
 });
 
 //add transaction
@@ -139,7 +138,7 @@ app.post('/addFinance/:id', (req, res) => {
         { new: true, useFindAndModify: false }
     )
     .then(student => res.json(student))
-    .catch(err => res.status(500).json({ error: err }));
+    .catch(err => res.json({ error: err }));
 });
 
 //edit transaction
@@ -153,7 +152,7 @@ app.put('/editFinance/:studentId/:financeId', (req, res) => {
         { new: true, useFindAndModify: false }
     )
     .then(student => res.json(student))
-    .catch(err => res.status(500).json({ error: err }));
+    .catch(err => res.json({ error: err }));
 });
 
 //delete transaction
@@ -166,20 +165,20 @@ app.delete('/deleteFinance/:studentId/:financeId', (req, res) => {
         { new: true, useFindAndModify: false }
     )
     .then(student => res.json(student))
-    .catch(err => res.status(500).json({ error: err }));
+    .catch(err => res.json({ error: err }));
 });
 
 //get education
 app.get('/getEducation/:id', (req, res) => {
     StudentModel.findById(req.params.id)
-        .then(student => {
-            if(student) {
-                res.json(student.education);
-            } else {
-                res.status(404).json({ message: 'Student not found' });
-            }
-        })
-        .catch(err => res.json({ error: err }));
+    .then(student => {
+        if(student) {
+            res.json(student.education);
+        } else {
+            res.status(404).json({ message: 'Student not found' });
+        }
+    })
+    .catch(err => res.json({ error: err }));
 });
 
 //edit education
@@ -193,10 +192,10 @@ app.put('/editEducation/:studentId/:educationId', (req, res) => {
         { new: true, useFindAndModify: false }
     )
     .then(student => res.json(student))
-    .catch(err => res.status(500).json({ error: err }));
+    .catch(err => res.json({ error: err }));
 })
 
 //running server
 app.listen(3001, () => {
-    console.log("Server is running :)")
+    console.log("Server is running")
 })

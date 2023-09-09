@@ -26,24 +26,21 @@ const EditStudent = () => {
                 const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
                 setStudent({ ...response.data, birthDate: formattedDate });
             })
-            .catch(error => console.error(`There was an error retrieving the student: ${error}`));
+            .catch(error => console.error(error));
     }, [id]);
 
     const handleChange = (e) => {
-        setStudent({
-            ...student,
-            [e.target.name]: e.target.value
-        });
+        setStudent({ ...student, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.put(`http://localhost:3001/editStudent/${id}`, student)
-            .then(response => {
-                alert('Student updated successfully');
-                navigate('/database');
-            })
-            .catch(error => console.error(`There was an error updating the student: ${error}`));
+        .then(response => {
+            alert('Student updated successfully');
+            navigate('/database');
+        })
+        .catch(error => console.error(error));
     };
 
     return (
