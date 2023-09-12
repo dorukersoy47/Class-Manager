@@ -19,7 +19,7 @@ const AddFinance = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`https://class-manager.vercel.app/addFinance/${id}`, finance)
+        axios.post(`http://localhost:3001/addFinance/${id}`, finance)
         .then(response => {
             alert('Finance added successfully');
             navigate(`/finance/${id}`);
