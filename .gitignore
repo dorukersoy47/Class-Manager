@@ -1,5 +1,6 @@
 # project files
 config.js
+.env
 
 # dependencies
 /node_modules
