@@ -9,7 +9,21 @@ app.use(cors())
 app.use(express.json())
 
 //connect to db
-mongoose.connect("mongodb://127.0.0.1:27017/cs_ia_classmanager")
+const uri = "mongodb+srv://DorukErsoy:Enigma147723!@cluster0.6rcw6cp.mongodb.net/yourDatabaseName?retryWrites=true&w=majority";
+
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverApi: {
+        version: '1',
+        strict: true,
+        deprecationErrors: true,
+    }
+}).then(() => {
+    console.log('Connected to MongoDB Atlas');
+}).catch(err => {
+    console.log('Failed to connect to MongoDB Atlas:', err.message);
+});
 
 //authentication
 app.post('/authenticate', (req, res) => {

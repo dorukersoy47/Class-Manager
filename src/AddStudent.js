@@ -33,7 +33,7 @@ const AddStudent = () => {
     
         const studentData = {...student, education };
     
-        axios.post('http://localhost:3001/addStudent', studentData)
+        axios.post('https://class-manager.vercel.app/addStudent', studentData)
         .then(response => {
             alert('Student added successfully');
             navigate('/database');
