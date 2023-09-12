@@ -9,7 +9,6 @@ app.use(cors())
 app.use(express.json())
 
 //connect to db
-const uri = process.env.MONGODB_URI;
 mongoose.connect("mongodb://127.0.0.1:27017/cs_ia_classmanager")
 
 //authentication
