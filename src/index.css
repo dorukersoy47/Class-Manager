@@ -63,7 +63,6 @@
 .content {
     max-width: 600px;
     margin: 40px auto;
-    padding: 20px;
 }
 
 .studentDb {
@@ -174,7 +173,6 @@
 
 .finance {
     margin: auto;
-    padding: 2rem;
     border-radius: 10px;
 }
 
@@ -290,13 +288,19 @@
     margin-top: 0px;
 }
 
-.educationModulep {
+.educationModuleButton {
     text-align: center;
     color: #0026a5;
     background-color: #83a0ff;
     border: 2px solid #002ab4;
     border-radius: 5px;
     margin-bottom: 20px;
+}
+
+.educationModuleButton:hover {
+    color: #6e85da;
+    background-color: #cad1e9;
+    cursor: pointer;
 }
 
 .educationList {
@@ -357,4 +361,26 @@
 .PDF:hover {
     font-weight: none;
     color: #002ab4
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 100px;   
+    background-color: #aaaa;  
+    color: #fff;        
+    text-align: center;
+    border-radius: 4px;
+    font-size: 12px;     
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }

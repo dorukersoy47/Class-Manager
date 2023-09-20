@@ -5,6 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 const EditEducation = () => {
     const { studentId, educationId } = useParams();
     const navigate = useNavigate();
+    const [studentFullName, setStudentFullName] = useState('');
 
     const [education, setEducation] = useState({
         level: '',
@@ -15,6 +16,7 @@ const EditEducation = () => {
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${studentId}`)
             .then(response => {
+                setStudentFullName(response.data.name + " " + response.data.surname);
                 const educationItem = response.data.education.find(item => item._id.toString() === educationId.toString());
                 if (educationItem) {
                     let updatedEducation = { ...educationItem };
@@ -51,17 +53,20 @@ const EditEducation = () => {
     }   
 
     return ( 
-        <form className="studentForm" onSubmit={handleSubmit}>
-            <label className="formLabel">
-                Start Date:
-                <input className="formInput" type="date" name="startDate" value={education.startDate} onChange={handleChange} />
-            </label>
-            <label className="formLabel">
-                End Date:
-                <input className="formInput" type="date" name="endDate" value={education.endDate} onChange={handleChange} />
-            </label>
-            <button className="submitButton" type="submit">Update Level</button>
-        </form>
+        <div>
+            <h3 style={{textAlign: "center", textDecoration: "underline", marginBottom: "20px", fontSize: "30px" }}>{studentFullName}</h3>
+            <form className="studentForm" onSubmit={handleSubmit}>
+                <label className="formLabel">
+                    Start Date:
+                    <input className="formInput" type="date" name="startDate" value={education.startDate} onChange={handleChange} />
+                </label>
+                <label className="formLabel">
+                    End Date:
+                    <input className="formInput" type="date" name="endDate" value={education.endDate} onChange={handleChange} />
+                </label>
+                <button className="submitButton" type="submit">Update Level</button>
+            </form>
+        </div>
      );
 }
  

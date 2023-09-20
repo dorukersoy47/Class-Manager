@@ -5,7 +5,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 const EditFinance = () => {
     const { studentId, financeId } = useParams();
     const navigate = useNavigate();
-
+    const [studentFullName, setStudentFullName] = useState('');
+    
     const [finance, setFinance] = useState({
         title: '',
         description: '',
@@ -16,6 +17,7 @@ const EditFinance = () => {
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${studentId}`)
         .then(response => {
+            setStudentFullName(response.data.name + " " + response.data.surname)
             if (response.data.finance) {
                 const financeItem = response.data.finance.find(item => item._id.toString() === financeId.toString());
                 if (financeItem) {
@@ -44,25 +46,28 @@ const EditFinance = () => {
     }
 
     return (
-        <form className="studentForm" onSubmit={handleSubmit}>
-            <label className="formLabel">
-                Title:*
-                <input className="formInput" type="text" name="title" value={finance.title} onChange={handleChange} required />
-            </label>
-            <label className="formLabel">
-                Description:
-                <input className="formInput" type="text" name="description" value={finance.description} onChange={handleChange} />
-            </label>
-            <label className="formLabel">
-                Value:*
-                <input className="formInput" type="number" name="value" value={finance.value} onChange={handleChange} required />
-            </label>
-            <label className="formLabel">
-                Date:*
-                <input className="formInput" type="date" name="date" value={finance.date} onChange={handleChange} required />
-            </label>
-            <button className="submitButton" type="submit">Update Finance</button>
-        </form>
+        <div>
+            <h3 style={{textAlign: "center", textDecoration: "underline", marginBottom: "20px", fontSize: "30px" }}>{studentFullName}</h3>
+            <form className="studentForm" onSubmit={handleSubmit}>
+                <label className="formLabel">
+                    Title:*
+                    <input className="formInput" type="text" name="title" value={finance.title} onChange={handleChange} required />
+                </label>
+                <label className="formLabel">
+                    Description:
+                    <input className="formInput" type="text" name="description" value={finance.description} onChange={handleChange} />
+                </label>
+                <label className="formLabel">
+                    Value:*
+                    <input className="formInput" type="number" name="value" value={finance.value} onChange={handleChange} required />
+                </label>
+                <label className="formLabel">
+                    Date:*
+                    <input className="formInput" type="date" name="date" value={finance.date} onChange={handleChange} required />
+                </label>
+                <button className="submitButton" type="submit">Update Finance</button>
+            </form>
+        </div>
     );
 }
 

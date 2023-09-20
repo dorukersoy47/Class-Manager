@@ -7,10 +7,12 @@ import EditImage from "./images/Edit.svg";
 const LessonsModule = () => {
     const [lessons, setLessons] = useState([]);
     const { id } = useParams();
+    const [studentFullName, setStudentFullName] = useState('');
 
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${id}`)
         .then((response) => {
+                setStudentFullName(response.data.name + " " + response.data.surname)
             const sortedLessons = response.data.lessons.sort((a, b) => new Date(b.date) - new Date(a.date));
             setLessons(sortedLessons);
         })
@@ -31,6 +33,7 @@ const LessonsModule = () => {
 
     return ( 
         <div className="lessons">
+            <h3 style={{textAlign: "center", textDecoration: "underline", marginBottom: "20px", fontSize: "30px" }}>{studentFullName}</h3>
             <div className="addElement">
                 <a className="add" href={`/addLesson/${id}`}>Add Lesson</a>
             </div>

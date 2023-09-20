@@ -8,10 +8,12 @@ const EducationModule = () => {
 
     const { id } = useParams();
     const [educationLevels, setEducationLevels] = useState([]);
+    const [studentFullName, setStudentFullName] = useState('');
 
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${id}`)
             .then(response => {
+                setStudentFullName(response.data.name + " " + response.data.surname)
                 setEducationLevels(response.data.education);
             })
             .catch(error => console.error(error));
@@ -19,14 +21,15 @@ const EducationModule = () => {
     
     const downloadPDF = () => {
         axios.get(`http://localhost:3001/getEducation/${id}`)
-        .then(response => { EducationPDF(id, response.data) })
+        .then(response => { EducationPDF(id, response.data, studentFullName) })
         .catch(error => console.error(error));
     }
 
     return ( 
         <div>
             <div className="educationModule">
-                <p onClick={downloadPDF} className="educationModulep">Generate Report</p>
+                <h3 style={{textAlign: "center", textDecoration: "underline", marginBottom: "20px", fontSize: "30px" }}>{studentFullName}</h3>
+                <button onClick={downloadPDF} className="educationModuleButton">Generate Report</button>
                 <h1 className="educationModuleh1">Education Module</h1>
                 {educationLevels.map((item, index) => (
                     <div className="educationList" key={index}>

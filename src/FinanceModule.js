@@ -11,6 +11,7 @@ const FinanceModule = () => {
     const [total, setTotal] = useState(0);
     const [lessonsNumber, setLessonsNumber] = useState(0);
     const lessonPrice = 400;
+    const [studentFullName, setStudentFullName] = useState('');
 
     const { id } = useParams();
 
@@ -30,7 +31,7 @@ const FinanceModule = () => {
     const downloadPDF = () => {
         axios.get(`http://localhost:3001/getFinance/${id}`)
         .then(response => {
-            FinancePDF(id, response.data, lessonsNumber);
+            FinancePDF(id, response.data, lessonsNumber, studentFullName);
         })
         .catch(error => console.error(error));
     };
@@ -39,6 +40,7 @@ const FinanceModule = () => {
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${id}`)
         .then(response => {
+            setStudentFullName(response.data.name + " " + response.data.surname)
             const sortedFinance = response.data.finance.sort((a, b) => new Date(b.date) - new Date(a.date));
             setFinance(sortedFinance);
             setLessonsNumber(response.data.lessons.filter(item => item.status === "Completed").length);
@@ -54,15 +56,21 @@ const FinanceModule = () => {
 
     return (
         <div className="finance">
+            <h3 style={{textAlign: "center", textDecoration: "underline", marginBottom: "20px", marginUp: "0px", fontSize: "30px" }}>{studentFullName}</h3>
             <div className="addElement">
-                <a className="add" href={`/addFinance/${id}`}>Add Finance</a>
+                <a className="add" href={`/addFinance/${id}`}>Add Transaction</a>
             </div>
-            <h2>Total Debt</h2>
+            <h2>Total Debt:</h2>
             <h3 style={{ color: total < 0 ? "red" : total === 0 ? 'black' : "green", fontWeight: "bold" }}>
                 {total}
             </h3>
             <h3>Amount of Lessons Completed: {lessonsNumber} (-{ lessonsNumber * lessonPrice})</h3>
-            <h2>Transaction History <img onClick={downloadPDF} src={ DownloadImage } alt="Download SVG" /></h2>
+            <h2>Transaction History
+                <div className="tooltip">
+                    <img onClick={downloadPDF} src={DownloadImage} alt="Download SVG" />
+                    <span className="tooltiptext">Download PDF</span>
+                </div>
+            </h2>
             {finance.map((item, index) => (
                 <div className="listBlock" key={index}>
                     <h3>{item.title}</h3>
