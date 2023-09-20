@@ -1,7 +1,7 @@
 {
     "login": {
-        "invalid": "Yanlış Giriş Bilgileri",
-        "login": "Giriş yap"
+        "invalid": "Invalid Credentials",
+        "login": "Login"
     },
 
     "pdf": {
