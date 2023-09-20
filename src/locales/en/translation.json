@@ -1,4 +1,47 @@
 {
-    "financeAdded": "Finance added successfully"
+    "downloadBooks": "Download Books",
+    "findAvailableTimes": "Find Available Times",
+    "calendar": "Calendar",
+    "students": "Students",
+
+    "finance": {
+        "title": "Title",
+        "description": "Description",
+        "value": "Value",
+        "date": "Date",
+        "add": "Add Transaction",
+        "alertAdded": "Transaction Added"
+    },
+
+    "lesson": {
+        "date": "Date",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "instrument": "Instrument",
+        "recurring": "Recurring",
+        "status": "Status",
+        "add": "Add Lesson",
+        "alertAdded": "Lesson added succesfully",
+        "selectStartTime": "-- Select Start Time --",
+        "selectEndTime": "-- Select End Time --",
+        "selectRecurring": "-- Select Recurring --",
+        "selectStatus": "-- Select Status --",
+        "yes": "Yes",
+        "no": "No",
+        "scheduled": "Scheduled",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+    },
+
+    "name": "Name",
+    "surname": "Surname",
+    "parentOneName": "Parent One Name",
+    "parentOneSurname": "Parent One Surname",
+    "parentTwoName": "Parent Two Name",
+    "parentTwoSurname": "Parent Two Surname",
+    "birthDate": "Birth Date",
+    "address": "Address",
+    "citizenshipNumber": "Citizenship Number",
+    "phoneNumber": "Phone Number"
 }
   

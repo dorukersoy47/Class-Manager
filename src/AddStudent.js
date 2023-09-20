@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 const AddStudent = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const [student, setStudent] = useState({
         name: '',
@@ -36,7 +37,7 @@ const AddStudent = () => {
     
         axios.post('http://localhost:3001/addStudent', studentData)
         .then(response => {
-            alert('Student added successfully');
+            alert(t('studentAddedSuccess'));
             navigate('/database');
             window.location.reload();
         })
@@ -46,45 +47,45 @@ const AddStudent = () => {
 
     return (
         <form className="studentForm" onSubmit={handleSubmit}>
-            <h3>Demographic</h3>
+            <h3>{t('demographic')}</h3>
             <label className="formLabel">
-                Name:*
+                {t('name')}*
                 <input className="formInput" type="text" name="name" onChange={handleChange} required />
             </label>
             <label className="formLabel">
-                Surname:*
+                {t('surname')}*
                 <input className="formInput" type="text" name="surname" onChange={handleChange} required />
             </label>
             <label className="formLabel">
-                Parent One Name:
+                {t('parentOneName')}
                 <input className="formInput" type="text" name="parentOneName" onChange={handleChange} />
             </label>
             <label className="formLabel">
-                Parent One Surname:
+                {t('parentOneSurname')}
                 <input className="formInput" type="text" name="parentOneSurname" onChange={handleChange} />
             </label>
             <label className="formLabel">
-                Parent Two Name:
+                {t('parentTwoName')}
                 <input className="formInput" type="text" name="parentTwoName" onChange={handleChange} />
             </label>
             <label className="formLabel">
-                Parent Two Surname:
+                {t('parentTwoSurname')}
                 <input className="formInput" type="text" name="parentTwoSurname" onChange={handleChange} />
             </label>
             <label className="formLabel">
-                Birth Date:*
+                {t('birthDate')}*
                 <input className="formInput" type="date" name="birthDate" onChange={handleChange} required />
             </label>
             <label className="formLabel">
-                Address:*
+                {t('address')}*
                 <input className="formInput" type="text" name="address" onChange={handleChange} required />
             </label>
             <label className="formLabel">
-                Citizenship Number:*
+                {t('citizenshipNumber')}*
                 <input className="formInput" type="number" name="citizenshipNumber" onChange={handleChange} required />
             </label>
             <label className="formLabel">
-                Phone Number:*
+                {t('phoneNumber')}*
                 <input className="formInput" type="number" name="phoneNumber" placeholder="5..." onChange={handleChange} required />
             </label>
             <button className="submitButton" type="submit">Add Student</button>

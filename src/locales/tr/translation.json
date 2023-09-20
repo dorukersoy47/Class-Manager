@@ -1,3 +1,47 @@
 {
-    "financeAdded": "Finans eklendi."
-  }
+    "downloadBooks": "Kitapları İndir",
+    "findAvailableTimes": "Uygun Zamanları Bul",
+    "calendar": "Takvim",
+    "students": "Öğrenciler",
+
+    "finance": {
+        "title": "Başlık",
+        "description": "Açıklama",
+        "value": "Değer",
+        "date": "Tarih",
+        "add": "Ödeme Ekle"
+    },
+    "financeAdded": "Ödeme eklendi.",
+
+    "lesson": {
+        "date": "Tarih",
+        "startTime": "Başlangıç Saati",
+        "endTime": "Bitiş Saati",
+        "instrument": "Enstrüman",
+        "recurring": "Tekrarlanma Durumu",
+        "status": "Durum",
+        "add": "Ders Ekle",
+        "alertAdded": "Ders başarıyla eklendi",
+        "selectStartTime": "-- Başlangıç Saatini Seçin --",
+        "selectEndTime": "-- Bitiş Saatini Seçin --",
+        "selectRecurring": "-- Tekrarlanıyor mu? --",
+        "selectStatus": "-- Durum Seçin --",
+        "yes": "Evet",
+        "no": "Hayır",
+        "scheduled": "Planlandı",
+        "completed": "Tamamlandı",
+        "cancelled": "İptal Edildi"
+    },
+
+    
+    "name": "İsim",
+    "surname": "Soyisim",
+    "parentOneName": "Veli 1 İsim",
+    "parentOneSurname": "Veli 1 Soyisim",
+    "parentTwoName": "Veli 2 İsim",
+    "parentTwoSurname": "Veli 2 Soyisim",
+    "birthDate": "Doğum Günü",
+    "address": "Adres",
+    "citizenshipNumber": "TC Kimlik",
+    "phoneNumber": "Telefon Numarası"
+}
