@@ -10,9 +10,14 @@
         "description": "Açıklama",
         "value": "Değer",
         "date": "Tarih",
-        "add": "Ödeme Ekle"
+        "alertAdded": "Ödeme başarılı bir şekilde eklendi.",        
+        "alertDelete": "Silmek istediğinden emin misin?",
+        "addTransaction": "Ödeme Ekle",
+        "totalDebt": "Toplam Borç",
+        "amountOfLessonsCompleted": "Bitirilen Ders Sayısı",
+        "downloadPDF": "Rapor Çıkar",
+        "transactionHistory": "Ödeme Geçmişi"
     },
-    "financeAdded": "Ödeme eklendi.",
 
     "lesson": {
         "date": "Tarih",
@@ -38,8 +43,11 @@
       "startDate": "Başlangıç Tarihi",
       "endDate": "Bitiş Tarihi",
       "education": "Eğitim",
-      "alertEdit": "Eğitim başarıyla düzenlendi.",
-      "updateLevel": "Güncelle"
+      "alertEdit": "Eğitim başarıyla güncellendi.",
+      "level": "Seviye",
+      "generateReport": "Raporla",
+      "educationModule": "Eğitim Modülü",
+      "notStarted": "Daha başlanmadı"
     },
 
     "update": "Güncelle",
@@ -63,5 +71,6 @@
     "delete": "Sil",
     "addStudent": "Öğrenci Ekle",
     "alertDelete": "Öğrenciyi silmek istediğinize emin misiniz?",
-    "alertAdd": "Öğrenci başarıyla eklendi"
+    "alertAdd": "Öğrenci başarıyla eklendi",
+    "alertEdit": "Öğrenci başarıyla güncellendi." 
 }

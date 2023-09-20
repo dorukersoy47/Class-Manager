@@ -13,6 +13,7 @@ const FinanceModule = () => {
     const [lessonsNumber, setLessonsNumber] = useState(0);
     const lessonPrice = 400;
     const [studentFullName, setStudentFullName] = useState('');
+    const { t } = useTranslation();
 
     const { id } = useParams();
 
@@ -59,17 +60,17 @@ const FinanceModule = () => {
         <div className="finance">
             <h3 style={{textAlign: "center", textDecoration: "underline", marginBottom: "20px", marginUp: "0px", fontSize: "30px" }}>{studentFullName}</h3>
             <div className="addElement">
-                <a className="add" href={`/addFinance/${id}`}>Add Transaction</a>
+                <a className="add" href={`/addFinance/${id}`}>{t('finance.addTransaction')}</a>
             </div>
-            <h2>Total Debt:</h2>
+            <h2>{t('finance.totalDebt')}:</h2>
             <h3 style={{ color: total < 0 ? "red" : total === 0 ? 'black' : "green", fontWeight: "bold" }}>
                 {total}
             </h3>
-            <h3>Amount of Lessons Completed: {lessonsNumber} (-{ lessonsNumber * lessonPrice})</h3>
-            <h2>Transaction History
+            <h3>{t('finance.amountOfLessonsCompleted')}: {lessonsNumber} (-{ lessonsNumber * lessonPrice})</h3>
+            <h2>{t('finance.transactionHistory')}
                 <div className="tooltip">
                     <img onClick={downloadPDF} src={DownloadImage} alt="Download SVG" />
-                    <span className="tooltiptext">Download PDF</span>
+                    <span className="tooltiptext">{t('finance.downloadPDF')}</span>
                 </div>
             </h2>
             {finance.map((item, index) => (

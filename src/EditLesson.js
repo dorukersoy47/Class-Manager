@@ -18,6 +18,11 @@ const EditLesson = () => {
         status: ''
     });
 
+    const formatToTimeOption = datetime => {
+        const dateObj = new Date(datetime);
+        return `${String(dateObj.getHours()).padStart(2, '0')}:${String(dateObj.getMinutes()).padStart(2, '0')}`;
+    };
+
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${studentId}`)
         .then(response => {
@@ -27,13 +32,13 @@ const EditLesson = () => {
                 if (lessonsItem) {
                     const date = new Date(lessonsItem.date);
                     const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
-    
-                    const formatDateTime = datetime => {
-                        const dateObj = new Date(datetime);
-                        return `${dateObj.getFullYear()}-${String(dateObj.getMonth() + 1).padStart(2, '0')}-${String(dateObj.getDate()).padStart(2, '0')}T${String(dateObj.getHours()).padStart(2, '0')}:${String(dateObj.getMinutes()).padStart(2, '0')}`;
-                    };
 
-                    setLessons({...lessonsItem, date: formattedDate, startTime: formatDateTime(lessonsItem.startTime), endTime: formatDateTime(lessonsItem.endTime) });
+                    setLessons({
+                        ...lessonsItem,
+                        date: formattedDate,
+                        startTime: formatToTimeOption(lessonsItem.startTime),
+                        endTime: formatToTimeOption(lessonsItem.endTime)
+                    });
                 }
             }
         })
@@ -47,36 +52,55 @@ const EditLesson = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const updatedLesson = { ...lessons, startTime: new Date(lessons.startTime), endTime: new Date(lessons.endTime) };
-        axios.put(`http://localhost:3001/editLesson/${studentId}/${lessonsId}`, updatedLesson)
-            .then(() => {
-                alert('lesson.alertEdit');
-                navigate(-1);
-            })
-            .catch(error => console.error(error));
+        const { date, startTime, endTime } = lessons;
+        const startDate = new Date(date + 'T' + startTime + ':00');
+        const endDate = new Date(date + 'T' + endTime + ':00');
+        const updatedLesson = { ...lessons, startTime: startDate, endTime: endDate };        axios.put(`http://localhost:3001/editLesson/${studentId}/${lessonsId}`, updatedLesson)
+        .then(() => {
+            alert(t('lesson.alertEdit'));
+            navigate(-1);
+        })
+        .catch(error => console.error(error));
     };
+
+    const timeOptions = [];
+    for (let i = 9; i < 22; i++) {
+        timeOptions.push(`${i.toString().padStart(2, '0')}:00`);
+        timeOptions.push(`${i.toString().padStart(2, '0')}:30`);
+    }
 
     return (
         <div>
-            <h3 style={{textAlign: "center", textDecoration: "underline", marginBottom: "20px", fontSize: "30px" }}>{studentFullName}</h3>
+            <h3 style={{ textAlign: "center", textDecoration: "underline", marginBottom: "20px", fontSize: "30px" }}>{studentFullName}</h3>
             <form onSubmit={handleSubmit} className="studentForm">
                 <label className="formLabel">
-                    {t('lesson.startTime')}*
+                    {t('lesson.date')}*
                     <input className="formInput" type="date" name="date" value={lessons.date} onChange={handleChange} required />
                 </label>
                 <label className="formLabel">
-                    <input className="formInput" type="datetime-local" name="startTime" value={lessons.startTime} onChange={handleChange} required />
+                    {t('lesson.startTime')}*
+                    <select className="formInput" name="startTime" value={lessons.startTime} onChange={handleChange} required>
+                        <option value="">{t('lesson.selectStartTime')}</option>
+                        {timeOptions.map((time, index) => (
+                            <option key={index} value={time}>{time}</option>
+                        ))}
+                    </select>
                 </label>
                 <label className="formLabel">
                     {t('lesson.endTime')}*
-                    <input className="formInput" type="datetime-local" name="endTime" value={lessons.endTime} onChange={handleChange} required />
+                    <select className="formInput" name="endTime" value={lessons.endTime} onChange={handleChange} required>
+                        <option value="">{t('lesson.selectEndTime')}</option>
+                        {timeOptions.map((time, index) => (
+                            index < timeOptions.length - 1 && <option key={index} value={time}>{time}</option>
+                        ))}
+                    </select>
                 </label>
                 <label className="formLabel">
                     {t('lesson.instrument')}*
                     <input className="formInput" type="String" name="instrument" value={lessons.instrument} onChange={handleChange} required />
                 </label>
                 <label className="formLabel">
-                    {t('lesson.resurring')}
+                    {t('lesson.recurring')}*
                     <select className="formInput" name="recurring" value={lessons.recurring} onChange={handleChange} required>
                         <option value="">-- Select Recurring --</option>
                         <option value={true}>Yes</option>
@@ -84,7 +108,7 @@ const EditLesson = () => {
                     </select>
                 </label>
                 <label className="formLabel">
-                    Status:*
+                    {t('lesson.status')}*
                     <select className="formInput" name="status" value={lessons.status} onChange={handleChange} required>
                         <option value="">-- Select Status --</option>
                         <option value={"Scheduled"}>Scheduled</option>

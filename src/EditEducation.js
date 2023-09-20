@@ -59,11 +59,11 @@ const EditEducation = () => {
             <h3 style={{textAlign: "center", textDecoration: "underline", marginBottom: "20px", fontSize: "30px" }}>{studentFullName}</h3>
             <form className="studentForm" onSubmit={handleSubmit}>
                 <label className="formLabel">
-                    {t('education.alertEdit')}
+                    {t('education.startDate')}
                     <input className="formInput" type="date" name="startDate" value={education.startDate} onChange={handleChange} />
                 </label>
                 <label className="formLabel">
-                    {t('education.alertEdit')}
+                    {t('education.endDate')}
                     <input className="formInput" type="date" name="endDate" value={education.endDate} onChange={handleChange} />
                 </label>
                 <button className="submitButton" type="submit">{t('update')}</button>
