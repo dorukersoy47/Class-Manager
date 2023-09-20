@@ -92,9 +92,9 @@ const AddLesson = () => {
                     {t('lesson.status')}*
                     <select className="formInput" name="status" value={lessons.status} onChange={handleChange} required>
                         <option value="">{t('lesson.selectStatus')}</option>
-                        <option value={"Scheduled"}>{t('lesson.scheduled')}</option>
-                        <option value={"Completed"}>{t('lesson.completed')}</option>
-                        <option value={"Cancelled"}>{t('lesson.cancelled')}</option>
+                        <option value={"Scheduled"}>{t('lesson.Scheduled')}</option>
+                        <option value={"Completed"}>{t('lesson.Completed')}</option>
+                        <option value={"Cancelled"}>{t('lesson.Cancelled')}</option>
                     </select>
                 </label>
                 <button className="submitButton" type="submit">{t('add')}</button>
