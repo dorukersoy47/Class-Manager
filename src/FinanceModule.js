@@ -5,6 +5,7 @@ import EditImage from './images/Edit.svg';
 import DeleteImage from './images/Delete.svg';
 import DownloadImage from './images/Download.svg';
 import { FinancePDF } from './FinancePDF';
+import { useTranslation } from 'react-i18next';
 
 const FinanceModule = () => {
     const [finance, setFinance] = useState([]);
@@ -12,11 +13,12 @@ const FinanceModule = () => {
     const [lessonsNumber, setLessonsNumber] = useState(0);
     const lessonPrice = 400;
     const [studentFullName, setStudentFullName] = useState('');
+    const { t } = useTranslation();
 
     const { id } = useParams();
 
     const handleDelete = (financeId) => {
-        if (window.confirm("Are you sure you want to delete this transaction?")) {
+        if (window.confirm(t('finance.alertDelete'))) {
             axios.delete(`http://localhost:3001/deleteFinance/${id}/${financeId}`)
             .then(res => {
                 if (res.status === 200) {
@@ -31,7 +33,7 @@ const FinanceModule = () => {
     const downloadPDF = () => {
         axios.get(`http://localhost:3001/getFinance/${id}`)
         .then(response => {
-            FinancePDF(id, response.data, lessonsNumber, studentFullName);
+            FinancePDF(id, response.data, lessonsNumber, studentFullName, t);
         })
         .catch(error => console.error(error));
     };
@@ -58,17 +60,17 @@ const FinanceModule = () => {
         <div className="finance">
             <h3 style={{textAlign: "center", textDecoration: "underline", marginBottom: "20px", marginUp: "0px", fontSize: "30px" }}>{studentFullName}</h3>
             <div className="addElement">
-                <a className="add" href={`/addFinance/${id}`}>Add Transaction</a>
+                <a className="add" href={`/addFinance/${id}`}>{t('finance.addTransaction')}</a>
             </div>
-            <h2>Total Debt:</h2>
+            <h2>{t('finance.totalDebt')}:</h2>
             <h3 style={{ color: total < 0 ? "red" : total === 0 ? 'black' : "green", fontWeight: "bold" }}>
                 {total}
             </h3>
-            <h3>Amount of Lessons Completed: {lessonsNumber} (-{ lessonsNumber * lessonPrice})</h3>
-            <h2>Transaction History
+            <h3>{t('finance.amountOfLessonsCompleted')}: {lessonsNumber} (-{ lessonsNumber * lessonPrice})</h3>
+            <h2>{t('finance.transactionHistory')}
                 <div className="tooltip">
                     <img onClick={downloadPDF} src={DownloadImage} alt="Download SVG" />
-                    <span className="tooltiptext">Download PDF</span>
+                    <span className="tooltiptext">{t('finance.downloadPDF')}</span>
                 </div>
             </h2>
             {finance.map((item, index) => (

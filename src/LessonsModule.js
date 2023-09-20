@@ -3,16 +3,18 @@ import axios from 'axios';
 import { useParams } from "react-router-dom";
 import DeleteImage from "./images/Delete.svg";
 import EditImage from "./images/Edit.svg";
+import { useTranslation } from 'react-i18next';
 
 const LessonsModule = () => {
     const [lessons, setLessons] = useState([]);
     const { id } = useParams();
     const [studentFullName, setStudentFullName] = useState('');
+    const { t } = useTranslation();
 
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${id}`)
         .then((response) => {
-                setStudentFullName(response.data.name + " " + response.data.surname)
+            setStudentFullName(response.data.name + " " + response.data.surname)
             const sortedLessons = response.data.lessons.sort((a, b) => new Date(b.date) - new Date(a.date));
             setLessons(sortedLessons);
         })
@@ -20,7 +22,7 @@ const LessonsModule = () => {
     }, [id]);
 
     const handleDelete = (lessonId) => {
-        if (window.confirm("Are you sure you want to delete this transaction?")) {
+        if (window.confirm(t('lesson.alertDelete'))) {
             axios.delete(`http://localhost:3001/deleteLesson/${id}/${lessonId}`)
             .then(res => {
                 if (res.status === 200) {
@@ -35,18 +37,18 @@ const LessonsModule = () => {
         <div className="lessons">
             <h3 style={{textAlign: "center", textDecoration: "underline", marginBottom: "20px", fontSize: "30px" }}>{studentFullName}</h3>
             <div className="addElement">
-                <a className="add" href={`/addLesson/${id}`}>Add Lesson</a>
+                <a className="add" href={`/addLesson/${id}`}>{t('add')}</a>
             </div>
             <div className="lessonMap">
                 {lessons.map((lesson, index) => {
                     return (
                     <div className="listBlock" key={index}>
-                        <p><b>Date</b> {lesson.date ? new Date(lesson.date).toLocaleDateString('en-GB') : ""}</p>
-                        <p><b>Start Time:</b> {lesson.startTime ? new Date(lesson.startTime).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) : ""}</p>
-                        <p><b>End Time:</b> {lesson.endTime ? new Date(lesson.endTime).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) : ""}</p>
-                        <p><b>Instrument:</b> {lesson.instrument}</p>  
-                        <p><b>Recurring:</b> {lesson.recurring ? "yes" : "no"}</p>
-                        <p><b>Status:</b> {lesson.status}</p>
+                        <p><b>{t('lesson.date')}:</b> {lesson.date ? new Date(lesson.date).toLocaleDateString('en-GB') : ""}</p>
+                        <p><b>{t('lesson.startTime')}:</b> {lesson.startTime ? new Date(lesson.startTime).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) : ""}</p>
+                        <p><b>{t('lesson.endTime')}:</b> {lesson.endTime ? new Date(lesson.endTime).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) : ""}</p>
+                        <p><b>{t('lesson.instrument')}:</b> {lesson.instrument}</p>  
+                        <p><b>{t('lesson.recurring')}:</b> {lesson.recurring ? t('lesson.yes') : t('lesson.no')}</p>
+                        <p><b>{t('lesson.status')}:</b> {t(`lesson.${lesson.status}`)}</p>
                         <a href={`/editLesson/${id}/${lesson._id}`}><img src={EditImage} alt="Edit SVG" /></a>
                         <img src={DeleteImage} alt="Delete SVG" onClick={() => handleDelete(lesson._id)} />
                     </div>

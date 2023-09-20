@@ -1,0 +1,139 @@
+{
+    "login": {
+            "invalid": "Invalid Credentials",
+            "login": "Login"
+    },
+
+    "pdf": {
+      "pdf": "Ders Kitapları",
+      "1":"Kitap 1 İndir",
+      "2":"Kitap 2 İndir",
+      "3":"Kitap 3 İndir",
+      "4":"Kitap 4 İndir",
+      "5":"Kitap 5 İndir",
+      "6":"Kitap 6 İndir",
+      "7":"Kitap 7 İndir",
+      "8":"Kitap 8 İndir"
+  },
+
+    "downloadBooks": "Kitapları İndir",
+    "findAvailableTimes": "Uygun Zamanları Bul",
+    "calendar": "Takvim",
+    "students": "Öğrenciler",
+
+    "finance": {
+        "finance": "Finans",
+        "title": "Başlık",
+        "description": "Açıklama",
+        "value": "Değer",
+        "date": "Tarih",
+        "alertAdded": "Ödeme başarılı bir şekilde eklendi.",        
+        "alertDelete": "Ödemeyi silmek istediğinden emin misin?",
+        "addTransaction": "Ödeme Ekle",
+        "totalDebt": "Toplam Borç",
+        "amountOfLessonsCompleted": "Bitirilen Ders Sayısı",
+        "downloadPDF": "Rapor Çıkar",
+        "transactionHistory": "Ödeme Geçmişi"
+    },
+
+    "financePDF": {
+      "finance": "Finans",
+      "title": "Baslik",
+      "description": "Aciklama",
+      "value": "Deger",
+      "date": "Tarih",
+      "alertAdded": "Odeme basarili bir sekilde eklendi.",        
+      "alertDelete": "Odemeyi silmek istediginden emin misin?",
+      "addTransaction": "Odeme Ekle",
+      "totalDebt": "Toplam Borc",
+      "amountOfLessonsCompleted": "Bitirilen Ders Sayisi",
+      "downloadPDF": "Rapor cikar",
+      "transactionHistory": "Odeme Gecmisi",
+      "reportFor": "Rapor Yapilan Ogrenci:",
+    "studentID": "Ogrenci Kimligi",
+    "lessonsCompleted": "Tamamlanan Dersler"
+  },
+
+    "lesson": {
+        "lesson": "Dersi",
+        "date": "Tarih",
+        "startTime": "Başlangıç Saati",
+        "endTime": "Bitiş Saati",
+        "instrument": "Enstrüman",
+        "recurring": "Tekrarlanma Durumu",
+        "status": "Durum",
+        "alertAdded": "Ders başarıyla eklendi",
+        "alertEdit": "Ders başarıyla düzenlendi",
+        "alertDelete": "Dersi silmek istediğinize emin misiniz?",
+        "selectStartTime": "-- Başlangıç Saatini Seçin --",
+        "selectEndTime": "-- Bitiş Saatini Seçin --",
+        "selectRecurring": "-- Tekrarlanıyor mu? --",
+        "selectStatus": "-- Durum Seçin --",
+        "yes": "Evet",
+        "no": "Hayır",
+        "Scheduled": "Planlandı",
+        "Completed": "Tamamlandı",
+        "Cancelled": "İptal Edildi"
+    },
+
+    "education": {
+      "startDate": "Başlangıç Tarihi",
+      "endDate": "Bitiş Tarihi",
+      "education": "Eğitim",
+      "alertEdit": "Eğitim başarıyla güncellendi.",
+      "level": "Seviye",
+      "generateReport": "Raporla",
+      "educationModule": "Eğitim Modülü",
+      "notStarted": "Daha başlanmadı",
+      "reportFor": "Rapor Cıkarılan Kisi"
+    },
+
+    "educationPDF": {
+      "startDate": "Baslangic Tarihi",
+      "endDate": "Bitis Tarihi",
+      "education": "Egitim",
+      "alertEdit": "Egitim basariyla guncellendi.",
+      "level": "Seviye",
+      "generateReport": "Raporla",
+      "educationModule": "Egitim Modulu",
+      "notStarted": "Daha baslanmadi",
+      "reportFor": "Rapor Cikarilan Kisi:",
+      "studentId": "Ogrenci Numarasi",
+      "Normal": "Normal",
+      "Succesful": "Basarili",
+      "Unsuccesful": "Basarisiz",
+      "notCapable": "Rapor Edilemiyor",
+      "weeks": "hafta",
+      "student": "Ogrenci",
+      "general": "Genel"
+    },
+
+    "update": "Güncelle",
+    "add": "Ekle",
+    "successDelete": "Başarıyla silindi.",
+    "loading": "Yükleniyor...",
+
+    "findFreeTimes": "Uygun Zamanları Bul",
+    "freeTimes": "Uygun Zamanlar",
+
+    "student": "Öğrenci",
+    "name": "İsim",
+    "surname": "Soyisim",
+    "parentOneName": "Veli 1 İsim",
+    "parentOneSurname": "Veli 1 Soyisim",
+    "parentTwoName": "Veli 2 İsim",
+    "parentTwoSurname": "Veli 2 Soyisim",
+    "birthDate": "Doğum Günü",
+    "address": "Adres",
+    "citizenshipNumber": "TC Kimlik",
+    "phoneNumber": "Telefon Numarası",
+    "parentOne": "Veli 1",
+    "parentTwo": "Veli 2",
+    "lessons": "Dersler",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "addStudent": "Öğrenci Ekle",
+    "alertDelete": "Öğrenciyi silmek istediğinize emin misiniz?",
+    "alertAdd": "Öğrenci başarıyla eklendi",
+    "alertEdit": "Öğrenci başarıyla güncellendi." 
+}
