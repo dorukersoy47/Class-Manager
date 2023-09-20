@@ -1,4 +1,21 @@
 {
+    "login": {
+        "invalid": "Yanlış Giriş Bilgileri",
+        "login": "Giriş yap"
+    },
+
+    "pdf": {
+        "pdf": "Booklets",
+        "1":"Download Book 1",
+        "2":"Download Book 2",
+        "3":"Download Book 3",
+        "4":"Download Book 4",
+        "5":"Download Book 5",
+        "6":"Download Book 6",
+        "7":"Download Book 7",
+        "8":"Download Book 8"
+    },
+
     "downloadBooks": "Download Books",
     "findAvailableTimes": "Find Available Times",
     "calendar": "Calendar",
@@ -19,7 +36,26 @@
         "transactionHistory": "Transaction History"
     },
 
+    "financePDF": {
+        "finance": "Finance",
+        "title": "Title",
+        "description": "Description",
+        "value": "Value",
+        "date": "Date",
+        "alertAdded": "Transaction added succesfully.",
+        "alertDelete": "Are you sure you want to delete this?",
+        "addTransaction": "Add Transaction",
+        "totalDebt": "Total Debt",
+        "amountOfLessonsCompleted": "Amount of Lessons Completed",
+        "downloadPDF": "Generate Report",
+        "transactionHistory": "Transaction History",
+        "reportFor": "Report for",
+        "studentID": "Student ID",
+        "lessonsCompleted": "Lessons Completed"
+    },
+
     "lesson": {
+        "lesson": "Lesson",
         "date": "Date",
         "startTime": "Start Time",
         "endTime": "End Time",
@@ -28,15 +64,16 @@
         "status": "Status",
         "alertAdded": "Lesson added succesfully",
         "alertEdit": "Lesson edited succesfully",
+        "alertDelete": "Are you sure about deleting this lesson?",
         "selectStartTime": "-- Select Start Time --",
         "selectEndTime": "-- Select End Time --",
         "selectRecurring": "-- Select Recurring --",
         "selectStatus": "-- Select Status --",
         "yes": "Yes",
         "no": "No",
-        "scheduled": "Scheduled",
-        "completed": "Completed",
-        "cancelled": "Cancelled"
+        "Scheduled": "Scheduled",
+        "Completed": "Completed",
+        "Cancelled": "Cancelled"
     },
 
     "education": {
@@ -52,6 +89,11 @@
 
     "update": "Update",
     "add": "Add",
+    "successDelete": "Deleted succesfully.",
+    "loading": "Loading...",
+
+    "findFreeTimes": "Find Free Times",
+    "freeTimes": "Free Times",
 
     "student": "Student",
     "name": "Name",

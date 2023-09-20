@@ -18,7 +18,7 @@ const FinanceModule = () => {
     const { id } = useParams();
 
     const handleDelete = (financeId) => {
-        if (window.confirm("Are you sure you want to delete this transaction?")) {
+        if (window.confirm(t('finance.alertDelete'))) {
             axios.delete(`http://localhost:3001/deleteFinance/${id}/${financeId}`)
             .then(res => {
                 if (res.status === 200) {
@@ -33,7 +33,7 @@ const FinanceModule = () => {
     const downloadPDF = () => {
         axios.get(`http://localhost:3001/getFinance/${id}`)
         .then(response => {
-            FinancePDF(id, response.data, lessonsNumber, studentFullName);
+            FinancePDF(id, response.data, lessonsNumber, studentFullName, t);
         })
         .catch(error => console.error(error));
     };

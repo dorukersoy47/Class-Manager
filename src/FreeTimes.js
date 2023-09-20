@@ -8,6 +8,7 @@ const FreeTimes = () => {
     const [selectedStart, setSelectedStart] = useState("09:00");
     const [selectedEnd, setSelectedEnd] = useState("22:00");
     const [freeTimes, setFreeTimes] = useState([]);
+    const { t } = useTranslation();
 
     useEffect(() => {
         axios.get('http://localhost:3001/getStudents')
@@ -84,9 +85,9 @@ const FreeTimes = () => {
                     </select>
 
                 </label>
-                <button className="submitButton" type="submit">Find Free Times</button>
+                <button className="submitButton" type="submit">{t('findFreeTimes')}</button>
             </form>
-            <h1 className="FreeTimesH1">Free Times</h1>
+            <h1 className="FreeTimesH1">{t('freeTimes')}</h1>
             <ul>
                 {freeTimes.map(time =>
                     <li className="freeTimes" key={time}>{time}</li>

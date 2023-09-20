@@ -23,7 +23,7 @@ const EducationModule = () => {
     
     const downloadPDF = () => {
         axios.get(`http://localhost:3001/getEducation/${id}`)
-        .then(response => { EducationPDF(id, response.data, studentFullName) })
+        .then(response => { EducationPDF(id, response.data, studentFullName, t) })
         .catch(error => console.error(error));
     }
 

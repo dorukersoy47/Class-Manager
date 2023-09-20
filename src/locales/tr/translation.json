@@ -1,4 +1,21 @@
 {
+    "login": {
+            "invalid": "Invalid Credentials",
+            "login": "Login"
+    },
+
+    "pdf": {
+      "pdf": "Ders Kitapları",
+      "1":"Kitap 1 İndir",
+      "2":"Kitap 2 İndir",
+      "3":"Kitap 3 İndir",
+      "4":"Kitap 4 İndir",
+      "5":"Kitap 5 İndir",
+      "6":"Kitap 6 İndir",
+      "7":"Kitap 7 İndir",
+      "8":"Kitap 8 İndir"
+  },
+
     "downloadBooks": "Kitapları İndir",
     "findAvailableTimes": "Uygun Zamanları Bul",
     "calendar": "Takvim",
@@ -11,7 +28,7 @@
         "value": "Değer",
         "date": "Tarih",
         "alertAdded": "Ödeme başarılı bir şekilde eklendi.",        
-        "alertDelete": "Silmek istediğinden emin misin?",
+        "alertDelete": "Ödemeyi silmek istediğinden emin misin?",
         "addTransaction": "Ödeme Ekle",
         "totalDebt": "Toplam Borç",
         "amountOfLessonsCompleted": "Bitirilen Ders Sayısı",
@@ -19,7 +36,26 @@
         "transactionHistory": "Ödeme Geçmişi"
     },
 
+    "financePDF": {
+      "finance": "Finans",
+      "title": "Baslik",
+      "description": "Aciklama",
+      "value": "Deger",
+      "date": "Tarih",
+      "alertAdded": "Odeme basarili bir sekilde eklendi.",        
+      "alertDelete": "Odemeyi silmek istediginden emin misin?",
+      "addTransaction": "Odeme Ekle",
+      "totalDebt": "Toplam Borc",
+      "amountOfLessonsCompleted": "Bitirilen Ders Sayisi",
+      "downloadPDF": "Rapor cikar",
+      "transactionHistory": "Odeme Gecmisi",
+      "reportFor": "Rapor Yapilan Ogrenci:",
+    "studentID": "Ogrenci Kimligi",
+    "lessonsCompleted": "Tamamlanan Dersler"
+  },
+
     "lesson": {
+        "lesson": "Dersi",
         "date": "Tarih",
         "startTime": "Başlangıç Saati",
         "endTime": "Bitiş Saati",
@@ -28,15 +64,16 @@
         "status": "Durum",
         "alertAdded": "Ders başarıyla eklendi",
         "alertEdit": "Ders başarıyla düzenlendi",
+        "alertDelete": "Dersi silmek istediğinize emin misiniz?",
         "selectStartTime": "-- Başlangıç Saatini Seçin --",
         "selectEndTime": "-- Bitiş Saatini Seçin --",
         "selectRecurring": "-- Tekrarlanıyor mu? --",
         "selectStatus": "-- Durum Seçin --",
         "yes": "Evet",
         "no": "Hayır",
-        "scheduled": "Planlandı",
-        "completed": "Tamamlandı",
-        "cancelled": "İptal Edildi"
+        "Scheduled": "Planlandı",
+        "Completed": "Tamamlandı",
+        "Cancelled": "İptal Edildi"
     },
 
     "education": {
@@ -52,6 +89,11 @@
 
     "update": "Güncelle",
     "add": "Ekle",
+    "successDelete": "Başarıyla silindi.",
+    "loading": "Yükleniyor...",
+
+    "findFreeTimes": "Uygun Zamanları Bul",
+    "freeTimes": "Uygun Zamanlar",
 
     "student": "Öğrenci",
     "name": "İsim",
