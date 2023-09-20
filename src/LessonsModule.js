@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from "react-router-dom";
 import DeleteImage from "./images/Delete.svg";
 import EditImage from "./images/Edit.svg";
+import { useTranslation } from 'react-i18next';
 
 const LessonsModule = () => {
     const [lessons, setLessons] = useState([]);

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import EditImage from './images/Edit.svg';
 import DeleteImage from './images/Delete.svg';
+import { useTranslation } from 'react-i18next';
 
 const PreviewLesson = () => {
     const { studentId, lessonsId } = useParams();

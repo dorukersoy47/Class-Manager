@@ -5,6 +5,7 @@ import EditImage from './images/Edit.svg';
 import DeleteImage from './images/Delete.svg';
 import DownloadImage from './images/Download.svg';
 import { FinancePDF } from './FinancePDF';
+import { useTranslation } from 'react-i18next';
 
 const FinanceModule = () => {
     const [finance, setFinance] = useState([]);

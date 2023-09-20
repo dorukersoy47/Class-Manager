@@ -2,7 +2,8 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { EducationPDF } from './EducationPDF';
-import EditImage from './images/Edit.svg'
+import EditImage from './images/Edit.svg';
+import { useTranslation } from 'react-i18next';
 
 const EducationModule = () => { 
 

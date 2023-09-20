@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const Login = ({ setAuthenticated }) => {
     const [credentials, setCredentials] = useState({ username: '', password: '' });

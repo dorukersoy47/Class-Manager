@@ -7,6 +7,7 @@ import EducationImage from './images/Education.svg';
 import DeleteImage from './images/Delete.svg';
 import EditImage from './images/Edit.svg';
 import LessonImage from './images/Lesson.svg';
+import { useTranslation } from 'react-i18next';
 
 const Database = () => {
 

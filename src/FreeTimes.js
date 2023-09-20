@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const FreeTimes = () => {
     const [lessons, setLessons] = useState([]);
