@@ -339,3 +339,22 @@
     background-color: #ac92e4;
     margin-right: 10px;
 }
+
+.PDFLinks {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+}   
+
+.PDF {
+    margin: 10px;
+    margin-left: 0px;
+    font-weight: none;
+    color: #194fff;
+}
+
+.PDF:hover {
+    font-weight: none;
+    color: #002ab4
+}
