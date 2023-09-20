@@ -19,63 +19,63 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#555',
     },
-    transaction: {
+    education: {
         marginBottom: 10,
         padding: 10,
         backgroundColor: '#fff',
         border: '1 solid #ddd',
     },
-    transactionTitle: {
+    educationTitle: {
         fontSize: 16,
         fontWeight: 'bold',
         color: '#333',
     },
-    transactionDescription: {
+    educationDescription: {
         fontSize: 14,
         color: '#666',
     },
-    transactionDate: {
+    educationDate: {
         fontSize: 14,
         color: '#666',
     },
-    transactionValue: {
+    educationValue: {
         fontSize: 16,
         fontWeight: 'bold',
         color: '#333',
     },
 });
 
-const evaluateLevel = (startDate, endDate, milestone) => {
-    if (!startDate || !endDate) {
-        return 'Not Capable of Reporting';
-    }
-
-    const start = new Date(startDate);
-    const end = new Date(endDate);
-    const differenceInWeeks = Math.round((end - start) / (1000 * 60 * 60 * 24 * 7));
-
-    let evaluation = 'Normal';
-        if (differenceInWeeks < milestone - 2) {
-            evaluation = 'Successful';
-        } else if (differenceInWeeks > milestone + 2) {
-            evaluation = 'Unsuccessful';
-        }
-
-    return `${evaluation} (Student: ${differenceInWeeks} weeks) (General: ${milestone} weeks)`;
-};
-
 export const EducationPDF = (id, levels, studentFullName, t) => {
     const milestones = [30, 33, 35, 40, 33, 39, 45, 52];
+
+    const evaluateLevel = (startDate, endDate, milestone, t) => {
+        if (!startDate || !endDate) {
+            return t('educationPDF.notCapable');
+        }
+    
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        const differenceInWeeks = Math.round((end - start) / (1000 * 60 * 60 * 24 * 7));
+    
+        let evaluation = t('educationPDF.Normal');
+        if (differenceInWeeks < milestone - 2) {
+            evaluation = t('educationPDF.Succesful');
+        } else if (differenceInWeeks > milestone + 2) {
+            evaluation = t('educationPDF.Unsuccesful');
+        }
+    
+        return `${evaluation} (${t('educationPDF.student')}: ${differenceInWeeks} ${t('educationPDF.weeks')}) (${t('educationPDF.general')}: ${milestone} ${t('educationPDF.weeks')})`;
+    };
 
     const MyDocument = (
         <Document>
         <Page size="A4" style={styles.page}>
-            <Text style={styles.header}>{t('education.reportFor')} {studentFullName}</Text>
-            <Text style={styles.id}>{t('education.studentID')}: {id}</Text>
+            <Text style={styles.header}>{t('educationPDF.reportFor')} {studentFullName}</Text>
+            <Text style={styles.id}>{t('educationPDF.studentId')}: {id}</Text>
             {levels.map((level, index) => (
-            <View key={index} style={styles.transaction}>
-                <Text style={styles.transactionTitle}>Level {index + 1}</Text>
-                <Text style={styles.transactionDescription}>{evaluateLevel(level.startDate, level.endDate, milestones[index])}</Text>
+            <View key={index} style={styles.education}>
+                <Text style={styles.educationTitle}>{t('educationPDF.level')} {index + 1}</Text>
+                <Text style={styles.educationDescription}>{evaluateLevel(level.startDate, level.endDate, milestones[index], t)}</Text>
             </View>
             ))}
         </Page>

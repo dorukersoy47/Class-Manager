@@ -84,7 +84,28 @@
       "level": "Seviye",
       "generateReport": "Raporla",
       "educationModule": "Eğitim Modülü",
-      "notStarted": "Daha başlanmadı"
+      "notStarted": "Daha başlanmadı",
+      "reportFor": "Rapor Cıkarılan Kisi"
+    },
+
+    "educationPDF": {
+      "startDate": "Baslangic Tarihi",
+      "endDate": "Bitis Tarihi",
+      "education": "Egitim",
+      "alertEdit": "Egitim basariyla guncellendi.",
+      "level": "Seviye",
+      "generateReport": "Raporla",
+      "educationModule": "Egitim Modulu",
+      "notStarted": "Daha baslanmadi",
+      "reportFor": "Rapor Cikarilan Kisi:",
+      "studentId": "Ogrenci Numarasi",
+      "Normal": "Normal",
+      "Succesful": "Basarili",
+      "Unsuccesful": "Basarisiz",
+      "notCapable": "Rapor Edilemiyor",
+      "weeks": "hafta",
+      "student": "Ogrenci",
+      "general": "Genel"
     },
 
     "update": "Güncelle",

@@ -87,6 +87,26 @@
         "notStarted": "Haven't started"
     },
 
+    "educationPDF": {
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "education": "Education",
+        "alertEdit": "Education updated succesfully.",
+        "level": "Level",
+        "generateReport": "Generate Report",
+        "educationModule": "Education Module",
+        "notStarted": "Haven't started",
+        "reportFor": "Generated Report For",
+        "studentId": "Student id",
+        "Normal": "Normal",
+        "Succesful": "Succesful",
+        "Unsuccesful": "Unsuccesful",
+        "notCapable": "Not Capable of Reporting",
+        "weeks": "weeks",
+        "student": "Student",
+        "general": "General"
+    },
+
     "update": "Update",
     "add": "Add",
     "successDelete": "Deleted succesfully.",
