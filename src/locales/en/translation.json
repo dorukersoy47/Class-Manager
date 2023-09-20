@@ -5,6 +5,7 @@
     "students": "Students",
 
     "finance": {
+        "finance": "Finance",
         "title": "Title",
         "description": "Description",
         "value": "Value",
@@ -20,8 +21,8 @@
         "instrument": "Instrument",
         "recurring": "Recurring",
         "status": "Status",
-        "add": "Add Lesson",
         "alertAdded": "Lesson added succesfully",
+        "alertEdit": "Lesson edited succesfully",
         "selectStartTime": "-- Select Start Time --",
         "selectEndTime": "-- Select End Time --",
         "selectRecurring": "-- Select Recurring --",
@@ -33,6 +34,16 @@
         "cancelled": "Cancelled"
     },
 
+    "education": {
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "education": "Education"
+    },
+
+    "update": "Update",
+    "add": "Add",
+
+    "student": "Student",
     "name": "Name",
     "surname": "Surname",
     "parentOneName": "Parent One Name",
@@ -42,6 +53,14 @@
     "birthDate": "Birth Date",
     "address": "Address",
     "citizenshipNumber": "Citizenship Number",
-    "phoneNumber": "Phone Number"
+    "phoneNumber": "Phone Number",
+    "parentOne": "Parent One",
+    "parentTwo": "Parent Two",
+    "lessons": "Lessons",
+    "edit": "Edit",
+    "delete": "Delete",
+    "addStudent": "Add Student",
+    "alertDelete": "Are you sure about deleting this student?",
+    "alertAdd": "Student added succesfully"
 }
   

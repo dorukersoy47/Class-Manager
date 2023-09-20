@@ -14,6 +14,7 @@ const Database = () => {
     const [students, setStudents] = useState([]);
     const [searchField, setSearchField] = useState('name');
     const [searchString, setSearchString] = useState('');
+    const { t } = useTranslation();
 
     const HighlightedText = ({ text = "", highlight = "" }) => {
         text = text.toString();
@@ -40,7 +41,7 @@ const Database = () => {
     }, []);
 
     const handleDelete = (id) => {
-        if (window.confirm("Are you sure you want to delete this student?")) {
+        if (window.confirm(t('alertDelete'))) {
             axios.delete(`http://localhost:3001/deleteStudent/${id}`)
             .then(res => {
                 if (res.status === 200) {
@@ -55,21 +56,21 @@ const Database = () => {
     return (
         <div className="studentDb">
             <div className="addElement">
-                <a className="add" href="./add">Add Student</a>
+                <a className="add" href="./add">{t('addStudent')}</a>
             </div>
             <div className="searchBar">
                 <div className="searchField">
                     <select value={searchField} onChange={(e) => setSearchField(e.target.value)}>
-                        <option value="name">Name</option>
-                        <option value="surname">Surname</option>
-                        <option value="birthDate">Birth Date</option>
-                        <option value="address">Address</option>
-                        <option value="citizenshipNumber">Citizenship Number</option>
-                        <option value="phoneNumber">Phone Number</option>
-                        <option value="parentOneName">Parent #1 Name</option>
-                        <option value="parentOneSurname">Parent #1 Surname</option>
-                        <option value="parentTwoName">Parent #2 Name</option>
-                        <option value="parentTwoSurname">Parent #2 Surname</option>
+                        <option value="name">{t('name')}</option>
+                        <option value="surname">{t('surname')}</option>
+                        <option value="birthDate">{t('birthDate')}</option>
+                        <option value="address">{t('address')}</option>
+                        <option value="citizenshipNumber">{t('citizenshipNumber')}</option>
+                        <option value="phoneNumber">{t('phoneNumber')}</option>
+                        <option value="parentOneName">{t('parentOneName')}</option>
+                        <option value="parentOneSurname">{t('parentOneSurname')}</option>
+                        <option value="parentTwoName">{t('parentTwoName')}</option>
+                        <option value="parentTwoSurname">{t('parentTwoSurname')}</option>
                     </select>
                 </div>
                 <div className="searchInput">
@@ -79,18 +80,18 @@ const Database = () => {
             <table className="studentDbTable">
                 <thead>
                     <tr>
-                        <th>Student</th>
-                        <th>Birth Date</th>
-                        <th>Address</th>
-                        <th>Citizenship Number</th>
-                        <th>Phone Number</th>
-                        <th>Parent #1</th>
-                        <th>Parent #2</th>
-                        <th>Finance</th>
-                        <th>Education</th>
-                        <th>Lessons</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                        <th>{t('name')}</th>
+                        <th>{t('surname')}</th>
+                        <th>{t('address')}</th>
+                        <th>{t('citizenshipNumber')}</th>
+                        <th>{t('phoneNumber')}</th>
+                        <th>{t('parentOne')}</th>
+                        <th>{t('parentTwo')}</th>
+                        <th>{t('finance.finance')}</th>
+                        <th>{t('education.education')}</th>
+                        <th>{t('lessons')}</th>
+                        <th>{t('edit')}</th>
+                        <th>{t('delete')}</th>
                     </tr>
                 </thead>
                 <tbody>

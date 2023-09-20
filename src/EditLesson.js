@@ -7,6 +7,7 @@ const EditLesson = () => {
     const { studentId, lessonsId } = useParams();
     const navigate = useNavigate();
     const [studentFullName, setStudentFullName] = useState('');
+    const { t } = useTranslation();
 
     const [lessons, setLessons] = useState({
         date: '',
@@ -49,7 +50,7 @@ const EditLesson = () => {
         const updatedLesson = { ...lessons, startTime: new Date(lessons.startTime), endTime: new Date(lessons.endTime) };
         axios.put(`http://localhost:3001/editLesson/${studentId}/${lessonsId}`, updatedLesson)
             .then(() => {
-                alert('Lesson updated successfully');
+                alert('lesson.alertEdit');
                 navigate(-1);
             })
             .catch(error => console.error(error));
@@ -60,22 +61,22 @@ const EditLesson = () => {
             <h3 style={{textAlign: "center", textDecoration: "underline", marginBottom: "20px", fontSize: "30px" }}>{studentFullName}</h3>
             <form onSubmit={handleSubmit} className="studentForm">
                 <label className="formLabel">
-                    Date:*
+                    {t('lesson.startTime')}*
                     <input className="formInput" type="date" name="date" value={lessons.date} onChange={handleChange} required />
                 </label>
                 <label className="formLabel">
                     <input className="formInput" type="datetime-local" name="startTime" value={lessons.startTime} onChange={handleChange} required />
                 </label>
                 <label className="formLabel">
-                    End Time:*
+                    {t('lesson.endTime')}*
                     <input className="formInput" type="datetime-local" name="endTime" value={lessons.endTime} onChange={handleChange} required />
                 </label>
                 <label className="formLabel">
-                    Instrument:*
+                    {t('lesson.instrument')}*
                     <input className="formInput" type="String" name="instrument" value={lessons.instrument} onChange={handleChange} required />
                 </label>
                 <label className="formLabel">
-                    Recurring:*
+                    {t('lesson.resurring')}
                     <select className="formInput" name="recurring" value={lessons.recurring} onChange={handleChange} required>
                         <option value="">-- Select Recurring --</option>
                         <option value={true}>Yes</option>

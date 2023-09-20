@@ -57,7 +57,7 @@ const AddFinance = () => {
                     {t('finance.date')}*
                     <input className="formInput" type="date" name="date" value={finance.date} onChange={handleChange} required />
                 </label>
-                <button className="submitButton" type="submit">{t('finance.add')}</button>
+                <button className="submitButton" type="submit">{t('add')}</button>
             </form>
         </div>
     );

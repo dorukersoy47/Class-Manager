@@ -7,6 +7,7 @@ const EditFinance = () => {
     const { studentId, financeId } = useParams();
     const navigate = useNavigate();
     const [studentFullName, setStudentFullName] = useState('');
+    const { t } = useTranslation();
     
     const [finance, setFinance] = useState({
         title: '',
@@ -40,7 +41,7 @@ const EditFinance = () => {
         e.preventDefault();
         axios.put(`http://localhost:3001/editFinance/${studentId}/${financeId}`, finance)
             .then(() => {
-                alert('Finance updated successfully');
+                alert(t('finance.alertAdded'));
                 navigate(`/finance/${studentId}`);
             })
             .catch(error => console.error(`There was an error updating the finance: ${error}`));
@@ -51,22 +52,22 @@ const EditFinance = () => {
             <h3 style={{textAlign: "center", textDecoration: "underline", marginBottom: "20px", fontSize: "30px" }}>{studentFullName}</h3>
             <form className="studentForm" onSubmit={handleSubmit}>
                 <label className="formLabel">
-                    Title:*
+                    {t('finance.title')}*
                     <input className="formInput" type="text" name="title" value={finance.title} onChange={handleChange} required />
                 </label>
                 <label className="formLabel">
-                    Description:
+                    {t('finance.description')}*
                     <input className="formInput" type="text" name="description" value={finance.description} onChange={handleChange} />
                 </label>
                 <label className="formLabel">
-                    Value:*
+                    {t('finance.value')}*
                     <input className="formInput" type="number" name="value" value={finance.value} onChange={handleChange} required />
                 </label>
                 <label className="formLabel">
-                    Date:*
+                    {t('finance.date')}*
                     <input className="formInput" type="date" name="date" value={finance.date} onChange={handleChange} required />
                 </label>
-                <button className="submitButton" type="submit">Update Finance</button>
+                <button className="submitButton" type="submit">{t('update')}</button>
             </form>
         </div>
     );

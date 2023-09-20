@@ -37,7 +37,7 @@ const AddStudent = () => {
     
         axios.post('http://localhost:3001/addStudent', studentData)
         .then(response => {
-            alert(t('studentAddedSuccess'));
+            alert(t('alertAdd'));
             navigate('/database');
             window.location.reload();
         })
@@ -88,7 +88,7 @@ const AddStudent = () => {
                 {t('phoneNumber')}*
                 <input className="formInput" type="number" name="phoneNumber" placeholder="5..." onChange={handleChange} required />
             </label>
-            <button className="submitButton" type="submit">Add Student</button>
+            <button className="submitButton" type="submit">{t('add')}</button>
         </form>
     );
 }

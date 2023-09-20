@@ -7,6 +7,7 @@ const EditEducation = () => {
     const { studentId, educationId } = useParams();
     const navigate = useNavigate();
     const [studentFullName, setStudentFullName] = useState('');
+    const { t } = useTranslation();
 
     const [education, setEducation] = useState({
         level: '',
@@ -47,7 +48,7 @@ const EditEducation = () => {
         e.preventDefault();
         axios.put(`http://localhost:3001/editEducation/${studentId}/${educationId}`, education)
         .then(() => {
-            alert('Level updated successfully');
+            alert(t('education.alertEdit'));
             navigate(`/education/${studentId}`);
         })
         .catch(error => console.error(error));
@@ -58,14 +59,14 @@ const EditEducation = () => {
             <h3 style={{textAlign: "center", textDecoration: "underline", marginBottom: "20px", fontSize: "30px" }}>{studentFullName}</h3>
             <form className="studentForm" onSubmit={handleSubmit}>
                 <label className="formLabel">
-                    Start Date:
+                    {t('education.alertEdit')}
                     <input className="formInput" type="date" name="startDate" value={education.startDate} onChange={handleChange} />
                 </label>
                 <label className="formLabel">
-                    End Date:
+                    {t('education.alertEdit')}
                     <input className="formInput" type="date" name="endDate" value={education.endDate} onChange={handleChange} />
                 </label>
-                <button className="submitButton" type="submit">Update Level</button>
+                <button className="submitButton" type="submit">{t('update')}</button>
             </form>
         </div>
      );

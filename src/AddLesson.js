@@ -97,7 +97,7 @@ const AddLesson = () => {
                         <option value={"Cancelled"}>{t('lesson.cancelled')}</option>
                     </select>
                 </label>
-                <button className="submitButton" type="submit">{t('lesson.add')}</button>
+                <button className="submitButton" type="submit">{t('add')}</button>
             </form>
         </div>
     );
