@@ -127,6 +127,7 @@
     "address": "Address",
     "citizenshipNumber": "Citizenship Number",
     "phoneNumber": "Phone Number",
+    "email": "Email",
     "parentOne": "Parent One",
     "parentTwo": "Parent Two",
     "lessons": "Lessons",

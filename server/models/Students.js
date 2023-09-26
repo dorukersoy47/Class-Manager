@@ -33,6 +33,7 @@ const StudentSchema = new mongoose.Schema({
     address: { type: String, required: true },
     citizenshipNumber: { type: Number, required: true },
     phoneNumber: { type: Number, required: true },
+    email: {type: String, required: true},
     finance: [FinanceSchema],
     lessons: [LessonSchema],
     education: [EducationSchema]

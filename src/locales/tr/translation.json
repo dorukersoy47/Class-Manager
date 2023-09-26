@@ -128,6 +128,7 @@
     "address": "Adres",
     "citizenshipNumber": "TC Kimlik",
     "phoneNumber": "Telefon Numarası",
+    "email": "E-posta",
     "parentOne": "Veli 1",
     "parentTwo": "Veli 2",
     "lessons": "Dersler",

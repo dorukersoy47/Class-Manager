@@ -17,7 +17,8 @@ const AddStudent = () => {
         birthDate: '',
         address: '',
         citizenshipNumber: '',
-        phoneNumber: ''
+        phoneNumber: '',
+        email: ''
     });
 
     const handleChange = (e) => {
@@ -87,6 +88,10 @@ const AddStudent = () => {
             <label className="formLabel">
                 {t('phoneNumber')}*
                 <input className="formInput" type="number" name="phoneNumber" placeholder="5..." onChange={handleChange} required />
+            </label>
+            <label className="formLabel">
+                {t('email')}*
+                <input className="formInput" type="String" name="email" onChange={handleChange} required />
             </label>
             <button className="submitButton" type="submit">{t('add')}</button>
         </form>

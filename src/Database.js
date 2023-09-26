@@ -67,6 +67,7 @@ const Database = () => {
                         <option value="address">{t('address')}</option>
                         <option value="citizenshipNumber">{t('citizenshipNumber')}</option>
                         <option value="phoneNumber">{t('phoneNumber')}</option>
+                        <option value="email">{t('email')}</option>
                         <option value="parentOneName">{t('parentOneName')}</option>
                         <option value="parentOneSurname">{t('parentOneSurname')}</option>
                         <option value="parentTwoName">{t('parentTwoName')}</option>
@@ -85,6 +86,7 @@ const Database = () => {
                         <th>{t('address')}</th>
                         <th>{t('citizenshipNumber')}</th>
                         <th>{t('phoneNumber')}</th>
+                        <th>{t('email')}</th>
                         <th>{t('parentOne')}</th>
                         <th>{t('parentTwo')}</th>
                         <th>{t('finance.finance')}</th>
@@ -111,6 +113,7 @@ const Database = () => {
                             <td><HighlightedText text={student.address || ""} highlight={searchField === "address" ? searchString : ""} /></td>
                             <td><HighlightedText text={student.citizenshipNumber || ""} highlight={searchField === "citizenshipNumber" ? searchString : ""} /></td>
                             <td><HighlightedText text={student.phoneNumber || ""} highlight={searchField === "phoneNumber" ? searchString : ""} /></td>
+                            <td><HighlightedText text={student.email || ""} highlight={searchField === "email" ? searchString : ""} /></td>
                             <td><HighlightedText text={`${student.parentOneName || ""} ${student.parentOneSurname || ""}`} highlight={searchField === "parentOneName" || searchField === "parentOneSurname" ? searchString : ""} /></td>
                             <td><HighlightedText text={`${student.parentTwoName || ""} ${student.parentTwoSurname || ""}`} highlight={searchField === "parentTwoName" || searchField === "parentTwoSurname" ? searchString : ""} /></td>
                             <td className="icon"><a href={`/finance/${student._id}`}> <img src={FinanceImage} alt="Finance SVG" /></a></td>
