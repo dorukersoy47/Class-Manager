@@ -37,11 +37,11 @@ const FreeTimes = () => {
             const lessonEnd = new Date(lesson.endTime);
     
             if (lessonDate.toDateString() === selectedDate.toDateString()) {
-                let currentTime = new Date(lessonStart);
-                while (currentTime < lessonEnd) {
-                    const formattedTime = currentTime.getHours().toString().padStart(2, '0') + ':' + currentTime.getMinutes().toString().padStart(2, '0');
+                while (lessonStart < lessonEnd) {
+                    const formattedTime = lessonStart.getHours().toString().padStart(2, '0')
+                        + ':' + lessonStart.getMinutes().toString().padStart(2, '0');
                     lessonTimesThatDay.push(formattedTime);
-                    currentTime.setMinutes(currentTime.getMinutes() + 30);
+                    lessonStart.setMinutes(lessonStart.getMinutes() + 30);
                 }
             }
         });
