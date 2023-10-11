@@ -50,8 +50,8 @@
       "downloadPDF": "Rapor cikar",
       "transactionHistory": "Odeme Gecmisi",
       "reportFor": "Rapor Yapilan Ogrenci:",
-    "studentID": "Ogrenci Kimligi",
-    "lessonsCompleted": "Tamamlanan Dersler"
+      "studentID": "Ogrenci Kimligi",
+      "lessonsCompleted": "Tamamlanan Dersler"
   },
 
     "lesson": {

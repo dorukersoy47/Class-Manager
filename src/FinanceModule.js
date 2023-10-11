@@ -33,7 +33,7 @@ const FinanceModule = () => {
     const downloadPDF = () => {
         axios.get(`http://localhost:3001/getFinance/${id}`)
         .then(response => {
-            FinancePDF(id, response.data, lessonsNumber, studentFullName, t);
+            FinancePDF(id, response.data, lessonsNumber, total, studentFullName, t);
         })
         .catch(error => console.error(error));
     };

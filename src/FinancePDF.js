@@ -45,7 +45,7 @@ transactionValue: {
 },
 });
 
-export const FinancePDF = (id, transactions, lessonsNumber, studentFullName, t) => {
+export const FinancePDF = (id, transactions, lessonsNumber, total, studentFullName, t) => {
     const lessonPrice = 400;
 
     const MyDocument = (
@@ -53,7 +53,8 @@ export const FinancePDF = (id, transactions, lessonsNumber, studentFullName, t) 
             <Page size="A4" style={styles.page}>
                 <Text style={styles.header}>{t('financePDF.reportFor')} {studentFullName}</Text>
                 <Text style={styles.id}>{t('financePDF.studentID')}: {id}</Text>
-                <Text style={styles.transaction}>{t('financePDF.lessonsCompleted')}: {lessonsNumber} = -${lessonsNumber * lessonPrice}</Text>
+                <Text style={styles.transaction}>{t('financePDF.totalDebt')}: {total}</Text>
+                <Text style={styles.transaction}>{t('financePDF.lessonsCompleted')}: {lessonsNumber} = -{lessonsNumber * lessonPrice}</Text>
 
                 {transactions.map((transaction, index) => (
                     <View key={index} style={styles.transaction}>

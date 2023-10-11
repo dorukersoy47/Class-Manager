@@ -108,14 +108,22 @@ const Database = () => {
                     })
                     .map(student => {
                         return <tr key={student._id}>
-                            <td><HighlightedText text={`${student.name || ""} ${student.surname || ""}`} highlight={searchField === "name" || searchField === "surname" ? searchString : ""} /></td>
-                            <td><HighlightedText text={student.birthDate ? new Date(student.birthDate).toLocaleDateString('en-GB') : ""} highlight={searchField === "birthDate" ? searchString : ""} /></td>
-                            <td><HighlightedText text={student.address || ""} highlight={searchField === "address" ? searchString : ""} /></td>
-                            <td><HighlightedText text={student.citizenshipNumber || ""} highlight={searchField === "citizenshipNumber" ? searchString : ""} /></td>
-                            <td><HighlightedText text={student.phoneNumber || ""} highlight={searchField === "phoneNumber" ? searchString : ""} /></td>
-                            <td><HighlightedText text={student.email || ""} highlight={searchField === "email" ? searchString : ""} /></td>
-                            <td><HighlightedText text={`${student.parentOneName || ""} ${student.parentOneSurname || ""}`} highlight={searchField === "parentOneName" || searchField === "parentOneSurname" ? searchString : ""} /></td>
-                            <td><HighlightedText text={`${student.parentTwoName || ""} ${student.parentTwoSurname || ""}`} highlight={searchField === "parentTwoName" || searchField === "parentTwoSurname" ? searchString : ""} /></td>
+                            <td><HighlightedText text={`${student.name || ""} ${student.surname || ""}`}
+                                highlight={searchField === "name" || searchField === "surname" ? searchString : ""} /></td>
+                            <td><HighlightedText text={student.birthDate ? new Date(student.birthDate).toLocaleDateString('en-GB') : ""}
+                                highlight={searchField === "birthDate" ? searchString : ""} /></td>
+                            <td><HighlightedText text={student.address || ""}
+                                highlight={searchField === "address" ? searchString : ""} /></td>
+                            <td><HighlightedText text={student.citizenshipNumber || ""}
+                                highlight={searchField === "citizenshipNumber" ? searchString : ""} /></td>
+                            <td><HighlightedText text={student.phoneNumber || ""}
+                                highlight={searchField === "phoneNumber" ? searchString : ""} /></td>
+                            <td><HighlightedText text={student.email || ""}
+                                highlight={searchField === "email" ? searchString : ""} /></td>
+                            <td><HighlightedText text={`${student.parentOneName || ""} ${student.parentOneSurname || ""}`}
+                                highlight={searchField === "parentOneName" || searchField === "parentOneSurname" ? searchString : ""} /></td>
+                            <td><HighlightedText text={`${student.parentTwoName || ""} ${student.parentTwoSurname || ""}`}
+                                highlight={searchField === "parentTwoName" || searchField === "parentTwoSurname" ? searchString : ""} /></td>
                             <td className="icon"><a href={`/finance/${student._id}`}> <img src={FinanceImage} alt="Finance SVG" /></a></td>
                             <td className="icon"><a href={`/education/${student._id}`}> <img src={EducationImage} alt="Education SVG" /></a></td>
                             <td className="icon"><a href={`/lessons/${student._id}`}> <img src={LessonImage} alt="Lessons SVG" /></a></td>
