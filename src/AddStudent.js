@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const AddStudent = () => {
+    //Parameters
     const navigate = useNavigate();
     const { t } = useTranslation();
 
@@ -21,21 +22,26 @@ const AddStudent = () => {
         email: ''
     });
 
+    //Handling the change in fields
     const handleChange = (e) => {
         setStudent({...student, [e.target.name]: e.target.value });
     }
 
+    //Handling the submit button
     const handleSubmit = (e) => {
         e.preventDefault();
     
+        //Creating music level objects (1-8)
         const education = Array.from({ length: 8 }, (_, index) => ({
             level: index + 1,
             startDate: null,
             endDate: null
         }));
     
+        //Filling the education field of the student
         const studentData = {...student, education };
     
+        //Adding the new student to the DB
         axios.post('http://localhost:3001/addStudent', studentData)
         .then(response => {
             alert(t('alertAdd'));
@@ -45,7 +51,7 @@ const AddStudent = () => {
         .catch(error => console.error(error));
     };
     
-
+    //UI
     return (
         <form className="studentForm" onSubmit={handleSubmit}>
             <h3>{t('demographic')}</h3>

@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const AddFinance = () => {
+    //Parameters
     const { id } = useParams();
     const navigate = useNavigate();
     const { t } = useTranslation();
@@ -15,6 +16,7 @@ const AddFinance = () => {
         date: ''
     });
  
+    //Getting a single student
     const [studentFullName, setStudentFullName] = useState('');
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${id}`)
@@ -23,10 +25,12 @@ const AddFinance = () => {
         })
     }) 
 
+    //Handling the change in fields
     const handleChange = (e) => {
         setFinance({...finance, [e.target.name]: e.target.value});
     }
 
+    //Handling the submit button
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post(`http://localhost:3001/addFinance/${id}`, finance)
@@ -37,6 +41,7 @@ const AddFinance = () => {
         .catch(error => console.error(error));
     }
 
+    //UI
     return (
         <div>
             <h3 style={{textAlign: "center", textDecoration: "underline", marginBottom: "20px", fontSize: "30px" }}>{studentFullName}</h3>

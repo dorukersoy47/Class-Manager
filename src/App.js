@@ -1,3 +1,4 @@
+//All pages/components
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
@@ -21,24 +22,28 @@ import EducationModule from './EducationModule';
 import EditEducation from './EditEducation.js';
 import { addRecurringLesson } from './addRecurringLesson'; 
 
+//Main component of the website
 function App() {
+    //Parameters
 	const [students, setStudents] = useState([]);
 	const [authenticated, setAuthenticated] = useState(false);
     
+    //Authentication
 	useEffect(() => {
         setAuthenticated(sessionStorage.getItem('authenticated') === 'true');
     }, []);
-
     useEffect(() => {
         sessionStorage.setItem('authenticated', authenticated);
     }, [authenticated]);
 
+    //Get all students data
     useEffect(() => {
         axios.get('http://localhost:3001/getStudents')
             .then((result) => setStudents(result.data))
             .catch((err) => console.log(err));
     }, []);
 
+    //Repeats the addRecurringLesson function in the background every minute
     useEffect(() => {
         addRecurringLesson(students);
 
@@ -49,6 +54,7 @@ function App() {
         return () => clearInterval(intervalId);
   }, [students]);
 
+    //UI
 	return (
 		<Router>
             <div className="App">

@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const EditEducation = () => {
+    //Parameters
     const { studentId, educationId } = useParams();
     const navigate = useNavigate();
     const [studentFullName, setStudentFullName] = useState('');
@@ -15,31 +16,28 @@ const EditEducation = () => {
         endDate: ''
     })
 
-    useEffect(() => {
-        axios.get(`http://localhost:3001/getStudent/${studentId}`)
-            .then(response => {
-                setStudentFullName(response.data.name + " " + response.data.surname);
-                const educationItem = response.data.education.find(item => item._id.toString() === educationId.toString());
-                if (educationItem) {
-                    let updatedEducation = { ...educationItem };
-                    if (educationItem.startDate) {
-                        const date = new Date(educationItem.startDate);
-                        updatedEducation.startDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
-                    } else {
-                        updatedEducation.startDate = ''; 
-                    }
-                    if (educationItem.endDate) {
-                        const date = new Date(educationItem.endDate);
-                        updatedEducation.endDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
-                    } else {
-                        updatedEducation.endDate = ''; 
-                    }
-                    setEducation(updatedEducation);
-                }
-            })
-            .catch(error => console.error(error));
-    }, [educationId, studentId]);
+    //Getting a single student
+useEffect(() => {
+    axios.get(`http://localhost:3001/getStudent/${studentId}`)
+        .then(response => {
+            //Combining the name and username to display it on the top of the page
+            setStudentFullName(response.data.name + " " + response.data.surname);
+            //Finding the specific level of education
+            const educationItem = response.data.education.find(item => item._id.toString() === educationId.toString());
 
+            //Directly updating the state with the education item
+            if (educationItem) {
+                setEducation({
+                    level: educationItem.level || '',
+                    startDate: educationItem.startDate || '',
+                    endDate: educationItem.endDate || ''
+                });
+            }
+        })
+        .catch(error => console.error(error));
+}, [educationId, studentId]);
+
+    //Handling change in fields
     const handleChange = (e) => {
         setEducation({...education, [e.target.name]: e.target.value });
     };

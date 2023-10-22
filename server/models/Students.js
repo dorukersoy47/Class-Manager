@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//Finance objects connected to the student object
 const FinanceSchema = new mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String, require: false },
@@ -7,6 +8,7 @@ const FinanceSchema = new mongoose.Schema({
     date: { type: Date, required: true }
 });
 
+//Lesson objects connected to the student object
 const LessonSchema = new mongoose.Schema({
     date: { type: Date, required: true },
     startTime: { type: Date, required: true },
@@ -16,12 +18,14 @@ const LessonSchema = new mongoose.Schema({
     status: {type: String, enum: ["Scheduled", "Completed", "Cancelled"], default: "Scheduled"}
 });
 
+//Education objects (8 levels) connected to the student object
 const EducationSchema = new mongoose.Schema({
     level: {type: Number, required: true},
     startDate: { type: Date, required: false },
     endDate: {type: Date, required: false }
 })
 
+//The main object of student storing each individual
 const StudentSchema = new mongoose.Schema({
     name: { type: String, required: true },
     surname: { type: String, required: true },

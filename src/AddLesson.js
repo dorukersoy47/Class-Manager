@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const AddLesson = () => {
+    //Paramters
     const { id } = useParams();
     const navigate = useNavigate();
     const { t } = useTranslation();
@@ -18,6 +19,8 @@ const AddLesson = () => {
     });
 
     const [studentFullName, setStudentFullName] = useState('');
+
+    //Getting a single student
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${id}`)
             .then(response => {
@@ -25,10 +28,12 @@ const AddLesson = () => {
             })
     })
 
+    //Handling the change in fields
     const handleChange = (e) => {
         setLessons({ ...lessons, [e.target.name]: e.target.value });
     };
 
+    //Handling the submit button
     const handleSubmit = (e) => {
         e.preventDefault();
         const { date, startTime, endTime } = lessons;
@@ -44,12 +49,14 @@ const AddLesson = () => {
             .catch(error => console.error(error));
     };
 
+    //Forming possible time options (9-22)
     const timeOptions = [];
     for (let i = 9; i < 22; i++) {
         timeOptions.push(`${i.toString().padStart(2, '0')}:00`);
         timeOptions.push(`${i.toString().padStart(2, '0')}:30`);
     }
 
+    //UI
     return (
         <div>
             <h3 style={{ textAlign: "center", textDecoration: "underline", marginBottom: "20px", fontSize: "30px" }}>{studentFullName}</h3>

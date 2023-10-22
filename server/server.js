@@ -195,7 +195,7 @@ app.put('/editEducation/:studentId/:educationId', (req, res) => {
     .catch(err => res.json({ error: err }));
 })
 
-//running server
+//approve connection
 app.listen(3001, () => {
     console.log("Server is running")
 })

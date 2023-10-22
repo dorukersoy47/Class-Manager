@@ -10,20 +10,24 @@ import LessonImage from './images/Lesson.svg';
 import { useTranslation } from 'react-i18next';
 
 const Database = () => {
-
+    //Parameters
     const [students, setStudents] = useState([]);
     const [searchField, setSearchField] = useState('name');
     const [searchString, setSearchString] = useState('');
     const { t } = useTranslation();
 
+    //Highlihting text when searched
     const HighlightedText = ({ text = "", highlight = "" }) => {
+        //Converting the object to string to prevent errors
         text = text.toString();
+        //Trimming the text for the highlighted part
         if (!highlight.trim()) {
             return <span>{text}</span>;
         }
         const regex = new RegExp(`(${highlight})`, "gi");
         const parts = text.split(regex);
 
+        //Returning the highlighted text
         return (
             <span>
                 {parts.map((part, index) =>
@@ -34,25 +38,31 @@ const Database = () => {
         );
     };
 
+    //Getting alls students
     useEffect(() => {
         axios.get('http://localhost:3001/getStudents')
         .then(users => setStudents(users.data))
         .catch(err => console.log(err))
     }, []);
 
+    //Handlign the deletation of the student
     const handleDelete = (id) => {
+        //Making sure the user is serious
         if (window.confirm(t('alertDelete'))) {
+            //Deleting from the database
             axios.delete(`http://localhost:3001/deleteStudent/${id}`)
             .then(res => {
                 if (res.status === 200) {
                     setStudents(students.filter(student => student._id !== id));
                 }
+                //Refreshing site
                 window.location.reload();
             })
             .catch(err => console.log(err))
         }
     };
 
+    //UI
     return (
         <div className="studentDb">
             <div className="addElement">
