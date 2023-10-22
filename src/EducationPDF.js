@@ -1,5 +1,6 @@
 import { Page, Text, View, Document, pdf, StyleSheet } from '@react-pdf/renderer';
 
+//Page style
 const styles = StyleSheet.create({
     page: {
         flexDirection: 'column',
@@ -46,8 +47,10 @@ const styles = StyleSheet.create({
 });
 
 export const EducationPDF = (id, levels, studentFullName, t) => {
+    //Standard completion times (weeks)
     const milestones = [30, 33, 35, 40, 33, 39, 45, 52];
 
+    //Evaluating the improvement of the student
     const evaluateLevel = (startDate, endDate, milestone, t) => {
         if (!startDate || !endDate) {
             return t('educationPDF.notCapable');
@@ -57,6 +60,7 @@ export const EducationPDF = (id, levels, studentFullName, t) => {
         const end = new Date(endDate);
         const differenceInWeeks = Math.round((end - start) / (1000 * 60 * 60 * 24 * 7));
     
+        //Determining the improvement
         let evaluation = t('educationPDF.Normal');
         if (differenceInWeeks < milestone - 2) {
             evaluation = t('educationPDF.Succesful');
@@ -67,6 +71,7 @@ export const EducationPDF = (id, levels, studentFullName, t) => {
         return `${evaluation} (${t('educationPDF.student')}: ${differenceInWeeks} ${t('educationPDF.weeks')}) (${t('educationPDF.general')}: ${milestone} ${t('educationPDF.weeks')})`;
     };
 
+    //UI of the PDF document
     const MyDocument = (
         <Document>
         <Page size="A4" style={styles.page}>
@@ -82,6 +87,7 @@ export const EducationPDF = (id, levels, studentFullName, t) => {
         </Document>
     );
 
+    //Creating the PDF
     const blobPDF = pdf(MyDocument).toBlob();
     blobPDF.then((blob) => {
         const url = URL.createObjectURL(blob);

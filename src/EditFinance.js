@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const EditFinance = () => {
+    //Parameters
     const { studentId, financeId } = useParams();
     const navigate = useNavigate();
     const [studentFullName, setStudentFullName] = useState('');
@@ -16,29 +17,37 @@ const EditFinance = () => {
         date: ''
     });
 
+    //Getting a student's data
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${studentId}`)
         .then(response => {
+            //Combining name and surname to display it on the top of the page
             setStudentFullName(response.data.name + " " + response.data.surname)
-            if (response.data.finance) {
-                const financeItem = response.data.finance.find(item => item._id.toString() === financeId.toString());
-                if (financeItem) {
-                    const date = new Date(financeItem.date);
-                    const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
-                    setFinance({ ...financeItem, date: formattedDate });
+                if (response.data.finance) {
+                    //Getting a specific finance object
+                    const financeItem = response.data.finance.find(item => item._id.toString() === financeId.toString());
+                    if (financeItem) {
+                        //Updating the state with finance item
+                        const date = new Date(financeItem.date);
+                        // Convert the date to "YYYY-MM-DD" format to fill the edit table with initial data
+                        const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+                        setFinance({ ...financeItem, date: formattedDate });
+                    }
                 }
-            }
         })
         .catch(error => console.error(error));
     }, [studentId, financeId]);
 
 
+    //Handling the change in fields
     const handleChange = (e) => {
         setFinance({ ...finance, [e.target.name]: e.target.value});
     }
 
+    //Handling the submit button
     const handleSubmit = (e) => {
         e.preventDefault();
+        //Editing the old data in DB
         axios.put(`http://localhost:3001/editFinance/${studentId}/${financeId}`, finance)
             .then(() => {
                 alert(t('finance.alertAdded'));
@@ -47,6 +56,7 @@ const EditFinance = () => {
             .catch(error => console.error(`There was an error updating the finance: ${error}`));
     }
 
+    //UI
     return (
         <div>
             <h3 style={{textAlign: "center", textDecoration: "underline", marginBottom: "20px", fontSize: "30px" }}>{studentFullName}</h3>

@@ -8,6 +8,7 @@ import { FinancePDF } from './FinancePDF';
 import { useTranslation } from 'react-i18next';
 
 const FinanceModule = () => {
+    //Parameters
     const [finance, setFinance] = useState([]);
     const [total, setTotal] = useState(0);
     const [lessonsNumber, setLessonsNumber] = useState(0);
@@ -17,7 +18,9 @@ const FinanceModule = () => {
 
     const { id } = useParams();
 
+    //Handling delete
     const handleDelete = (financeId) => {
+        //Confirming the choice of the user
         if (window.confirm(t('finance.alertDelete'))) {
             axios.delete(`http://localhost:3001/deleteFinance/${id}/${financeId}`)
             .then(res => {
@@ -30,6 +33,7 @@ const FinanceModule = () => {
         }
     };
 
+    //Downloading the finance report (link to FinancePDF function)
     const downloadPDF = () => {
         axios.get(`http://localhost:3001/getFinance/${id}`)
         .then(response => {
@@ -38,11 +42,13 @@ const FinanceModule = () => {
         .catch(error => console.error(error));
     };
      
-
+    //Getting a specific student
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${id}`)
-        .then(response => {
+            .then(response => {
+            //Setting full name
             setStudentFullName(response.data.name + " " + response.data.surname)
+            //Soring the finance chronologically
             const sortedFinance = response.data.finance.sort((a, b) => new Date(b.date) - new Date(a.date));
             setFinance(sortedFinance);
             setLessonsNumber(response.data.lessons.filter(item => item.status === "Completed").length);
@@ -50,12 +56,13 @@ const FinanceModule = () => {
         .catch(error => console.error(error));
     }, [id]);
     
-
+    //Finding the total debt of the student
     useEffect(() => {
         const totalValue = finance.reduce((total, item) => total + item.value, 0);
         setTotal(totalValue - lessonsNumber * lessonPrice);
     }, [finance, lessonsNumber, lessonPrice]);
 
+    //UI
     return (
         <div className="finance">
             <h3 style={{textAlign: "center", textDecoration: "underline", marginBottom: "20px", marginUp: "0px", fontSize: "30px" }}>{studentFullName}</h3>

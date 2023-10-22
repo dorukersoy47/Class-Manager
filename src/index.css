@@ -202,7 +202,6 @@
     padding: 2px;
 }
 
-/*Calendar Module*/
 .Calendar {
     display: flex;
     flex-direction: column;
@@ -243,7 +242,6 @@
 	border-radius: 5px;
 }
 
-/*Lesson Preview*/
 .lessonPreview {
     border: 1px solid #ccc;
     background-color: #f9f9f9;

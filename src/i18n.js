@@ -5,6 +5,7 @@ import trTranslations from './locales/tr/translation.json';
 
 const defaultLanguage = localStorage.getItem('language') || 'en';
 
+//Language module
 i18n
   .use(initReactI18next)
   .init({

@@ -25,7 +25,7 @@ const EditEducation = () => {
             //Finding the specific level of education
             const educationItem = response.data.education.find(item => item._id.toString() === educationId.toString());
 
-            // Convert the date to "YYYY-MM-DD" format
+            // Convert the date to "YYYY-MM-DD" format to fill the edit table with initial data
             const formatDate = (dateString) => {
                 if (!dateString) return '';
                 const date = new Date(dateString);
@@ -52,6 +52,7 @@ const EditEducation = () => {
     //Handling the submit button
     const handleSubmit = (e) => {
         e.preventDefault();
+        //Editing the old data in DB
         axios.put(`http://localhost:3001/editEducation/${studentId}/${educationId}`, education)
         .then(() => {
             alert(t('education.alertEdit'));

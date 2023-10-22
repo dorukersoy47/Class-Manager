@@ -6,27 +6,31 @@ import EditImage from './images/Edit.svg';
 import { useTranslation } from 'react-i18next';
 
 const EducationModule = () => { 
-
+    //Parameters
     const { id } = useParams();
     const [educationLevels, setEducationLevels] = useState([]);
     const [studentFullName, setStudentFullName] = useState('');
     const { t } = useTranslation();
 
+    //Getting a specific student
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${id}`)
             .then(response => {
+                //Defining the full name and education objects
                 setStudentFullName(response.data.name + " " + response.data.surname)
                 setEducationLevels(response.data.education);
             })
             .catch(error => console.error(error));
     }, [id]);
     
+    //Downloading the education report (link to EducationPDF function)
     const downloadPDF = () => {
         axios.get(`http://localhost:3001/getEducation/${id}`)
         .then(response => { EducationPDF(id, response.data, studentFullName, t) })
         .catch(error => console.error(error));
     }
 
+    //UI
     return ( 
         <div>
             <div className="educationModule">

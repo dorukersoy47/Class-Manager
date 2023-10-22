@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const EditLesson = () => {
+    //Parameters
     const { studentId, lessonsId } = useParams();
     const navigate = useNavigate();
     const [studentFullName, setStudentFullName] = useState('');
@@ -18,6 +19,7 @@ const EditLesson = () => {
         status: ''
     });
 
+    //Formating time according to the format of *Time Options*
     const formatToTimeOption = datetime => {
         const dateObj = new Date(datetime);
         return `${String(dateObj.getHours()).padStart(2, '0')}:${String(dateObj.getMinutes()).padStart(2, '0')}`;
@@ -26,9 +28,11 @@ const EditLesson = () => {
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${studentId}`)
         .then(response => {
+            //Combining name and surname to display full name on top the page
             setStudentFullName(response.data.name + " " + response.data.surname)
             if (response.data.lessons) {
                 const lessonsItem = response.data.lessons.find(item => item._id.toString() === lessonsId.toString());
+                //Updating the state of lessons item
                 if (lessonsItem) {
                     const date = new Date(lessonsItem.date);
                     const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
@@ -46,16 +50,20 @@ const EditLesson = () => {
     }, [studentId, lessonsId]);
     
 
+    //Handling the changes in the field
     const handleChange = (e) => {
         setLessons({ ...lessons, [e.target.name]: e.target.value });
     };
 
+    //Handling the submit button
     const handleSubmit = (e) => {
         e.preventDefault();
         const { date, startTime, endTime } = lessons;
         const startDate = new Date(date + 'T' + startTime + ':00');
         const endDate = new Date(date + 'T' + endTime + ':00');
-        const updatedLesson = { ...lessons, startTime: startDate, endTime: endDate };        axios.put(`http://localhost:3001/editLesson/${studentId}/${lessonsId}`, updatedLesson)
+        const updatedLesson = { ...lessons, startTime: startDate, endTime: endDate };
+        //Editing the old data in DB
+        axios.put(`http://localhost:3001/editLesson/${studentId}/${lessonsId}`, updatedLesson)
         .then(() => {
             alert(t('lesson.alertEdit'));
             navigate(-1);
@@ -63,12 +71,14 @@ const EditLesson = () => {
         .catch(error => console.error(error));
     };
 
+    //Forming the time options between 9-22 and adding them to an array for easy navigation in UI
     const timeOptions = [];
     for (let i = 9; i < 22; i++) {
         timeOptions.push(`${i.toString().padStart(2, '0')}:00`);
         timeOptions.push(`${i.toString().padStart(2, '0')}:30`);
     }
 
+    //UI
     return (
         <div>
             <h3 style={{ textAlign: "center", textDecoration: "underline", marginBottom: "20px", fontSize: "30px" }}>{studentFullName}</h3>

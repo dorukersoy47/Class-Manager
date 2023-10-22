@@ -6,23 +6,30 @@ import EditImage from "./images/Edit.svg";
 import { useTranslation } from 'react-i18next';
 
 const LessonsModule = () => {
+    //Parameters
     const [lessons, setLessons] = useState([]);
     const { id } = useParams();
     const [studentFullName, setStudentFullName] = useState('');
     const { t } = useTranslation();
 
+    //Getting a specific student
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${id}`)
-        .then((response) => {
-            setStudentFullName(response.data.name + " " + response.data.surname)
+            .then((response) => {
+            //Setting full name to display on top
+                setStudentFullName(response.data.name + " " + response.data.surname)
+            //Sorting lessons according to chronological order
             const sortedLessons = response.data.lessons.sort((a, b) => new Date(b.date) - new Date(a.date));
             setLessons(sortedLessons);
         })
         .catch((error) => console.error(error));
     }, [id]);
 
+    //Handling deleting
     const handleDelete = (lessonId) => {
+        //Confirming the choice of the user
         if (window.confirm(t('lesson.alertDelete'))) {
+            //Deleting from the database
             axios.delete(`http://localhost:3001/deleteLesson/${id}/${lessonId}`)
             .then(res => {
                 if (res.status === 200) {
@@ -33,6 +40,7 @@ const LessonsModule = () => {
         }
     };
 
+    //UI
     return ( 
         <div className="lessons">
             <h3 style={{textAlign: "center", textDecoration: "underline", marginBottom: "20px", fontSize: "30px" }}>{studentFullName}</h3>

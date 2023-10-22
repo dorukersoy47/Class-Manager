@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const EditStudent = () => {
+    //Parameters
     const { id } = useParams();
     const navigate = useNavigate();    
     const { t } = useTranslation();
@@ -22,6 +23,7 @@ const EditStudent = () => {
         email: ''
     });
 
+    //Getting a specific student
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${id}`)
             .then(response => {
@@ -32,12 +34,15 @@ const EditStudent = () => {
             .catch(error => console.error(error));
     }, [id]);
 
+    //Handling the change in fields
     const handleChange = (e) => {
         setStudent({ ...student, [e.target.name]: e.target.value });
     };
 
+    //Handling submit button
     const handleSubmit = (e) => {
         e.preventDefault();
+        //Editing the data in DB
         axios.put(`http://localhost:3001/editStudent/${id}`, student)
         .then(response => {
             alert(t('alertEdit'));
@@ -46,6 +51,7 @@ const EditStudent = () => {
         .catch(error => console.error(error));
     };
 
+    //UI
     return (
         <form className="studentForm" onSubmit={handleSubmit}>
             <h3>Demographic</h3>

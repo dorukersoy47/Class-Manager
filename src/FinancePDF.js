@@ -1,5 +1,6 @@
 import { Page, Text, View, Document, pdf, StyleSheet } from '@react-pdf/renderer';
 
+//Page style
 const styles = StyleSheet.create({
 page: {
     flexDirection: 'column',
@@ -46,8 +47,10 @@ transactionValue: {
 });
 
 export const FinancePDF = (id, transactions, lessonsNumber, total, studentFullName, t) => {
-    const lessonPrice = 400;
+   //Standard price of a lesson
+   const lessonPrice = 400;
 
+    //UI of the PDF document
     const MyDocument = (
         <Document>
             <Page size="A4" style={styles.page}>
@@ -68,6 +71,7 @@ export const FinancePDF = (id, transactions, lessonsNumber, total, studentFullNa
     </Document>
     );
 
+    //Creaing the PDF document
     const blobPDF = pdf(MyDocument).toBlob();
     blobPDF.then((blob) => {
         const url = URL.createObjectURL(blob);

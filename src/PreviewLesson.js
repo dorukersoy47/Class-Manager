@@ -6,6 +6,7 @@ import DeleteImage from './images/Delete.svg';
 import { useTranslation } from 'react-i18next';
 
 const PreviewLesson = () => {
+    //Parameters
     const { studentId, lessonsId } = useParams();
     const navigate = useNavigate();
     const [lesson, setLesson] = useState(null);
@@ -13,19 +14,23 @@ const PreviewLesson = () => {
     const [loading, setLoading] = useState(true);
     const { t } = useTranslation();
 
+    //Formating time for usage
     const formatTime = (time) => {
         const d = new Date(time);
         return `${String(d.getHours()).padStart(2, '0')}.${String(d.getMinutes()).padStart(2, '0')}`;
     };
 
+    //Formating date for usage
     const formatDate = (date) => {
         const d = new Date(date);
         return `${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}.${d.getFullYear()}`;
     };
 
+    //Getting a single student
     useEffect(() => {
         axios.get(`http://localhost:3001/getStudent/${studentId}`)
             .then(({ data }) => {
+                //Getting the specific lesson
                 const foundLesson = data.lessons.find(item => item._id === lessonsId);
                 setStudent(data);
                 if (foundLesson) {
@@ -39,7 +44,9 @@ const PreviewLesson = () => {
             });
     }, [studentId, lessonsId]);
 
+    //Handling the delete of the lesson
     const handleDelete = () => {
+        //Confirming the choice with the user
         if (window.confirm(t('lesson.alertDelete'))) {
             axios.delete(`http://localhost:3001/deleteLesson/${studentId}/${lessonsId}`)
             .then(() => {
@@ -50,6 +57,7 @@ const PreviewLesson = () => {
         }
     };
 
+    //UI
     return (
         <div>
             {loading ?

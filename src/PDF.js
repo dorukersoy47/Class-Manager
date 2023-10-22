@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 const PDF = () => {
     const { t } = useTranslation();
     
+    //UI
     return (
         <div>
             <h1>{t('pdf.pdf')}</h1>

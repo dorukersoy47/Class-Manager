@@ -4,12 +4,14 @@ import enFlag from './images/en.svg';
 import trFlag from './images/tr.svg';
 
 const Navbar = () => {
+    //Parameters
     const { t, i18n } = useTranslation();
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
         localStorage.setItem('language', lng);
     }
     
+    //UI
     return (
         <nav className="navbar">
             <h1>ClassManager</h1>
