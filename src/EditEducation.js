@@ -17,31 +17,39 @@ const EditEducation = () => {
     })
 
     //Getting a single student
-useEffect(() => {
-    axios.get(`http://localhost:3001/getStudent/${studentId}`)
+    useEffect(() => {
+        axios.get(`http://localhost:3001/getStudent/${studentId}`)
         .then(response => {
             //Combining the name and username to display it on the top of the page
             setStudentFullName(response.data.name + " " + response.data.surname);
             //Finding the specific level of education
             const educationItem = response.data.education.find(item => item._id.toString() === educationId.toString());
 
-            //Directly updating the state with the education item
+            // Convert the date to "YYYY-MM-DD" format
+            const formatDate = (dateString) => {
+                if (!dateString) return '';
+                const date = new Date(dateString);
+                return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+            };
+
+            //Updating the state with the education item
             if (educationItem) {
                 setEducation({
                     level: educationItem.level || '',
-                    startDate: educationItem.startDate || '',
-                    endDate: educationItem.endDate || ''
+                    startDate: formatDate(educationItem.startDate),
+                    endDate: formatDate(educationItem.endDate)
                 });
             }
         })
         .catch(error => console.error(error));
-}, [educationId, studentId]);
+    }, [educationId, studentId]);
 
     //Handling change in fields
     const handleChange = (e) => {
         setEducation({...education, [e.target.name]: e.target.value });
     };
 
+    //Handling the submit button
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.put(`http://localhost:3001/editEducation/${studentId}/${educationId}`, education)
@@ -52,6 +60,7 @@ useEffect(() => {
         .catch(error => console.error(error));
     }   
 
+    //UI
     return ( 
         <div>
             <h3 style={{textAlign: "center", textDecoration: "underline", marginBottom: "20px", fontSize: "30px" }}>{studentFullName}</h3>
