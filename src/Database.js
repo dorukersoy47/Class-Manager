@@ -38,7 +38,7 @@ const Database = () => {
         );
     };
 
-    //Getting alls students
+    //Getting all students
     useEffect(() => {
         axios.get('http://localhost:3001/getStudents')
         .then(users => setStudents(users.data))

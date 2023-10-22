@@ -43,7 +43,8 @@ function App() {
             .catch((err) => console.log(err));
     }, []);
 
-    //Repeats the addRecurringLesson function in the background every minute
+    /*Repeats the addRecurringLesson function 
+    in the background every minute */
     useEffect(() => {
         addRecurringLesson(students);
 
