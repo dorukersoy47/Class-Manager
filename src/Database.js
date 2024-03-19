@@ -92,7 +92,7 @@ const Database = () => {
                 <thead>
                     <tr>
                         <th>{t('name')}</th>
-                        <th>{t('surname')}</th>
+                        <th>{t('birthDate')}</th>
                         <th>{t('address')}</th>
                         <th>{t('citizenshipNumber')}</th>
                         <th>{t('phoneNumber')}</th>
